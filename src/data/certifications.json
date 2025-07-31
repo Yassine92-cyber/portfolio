@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "title": "ADVANCED TRAINING COURSE: Finnish Legal System",
+    "issuer": "Finnish Refugee Council",
+    "date": "Jun 2025",
+    "fullTitle": "Advanced Training Course: Finnish Legal System",
+    "skills": [
+      "Finnish Legal System",
+      "Immigration Law",
+      "Legal Procedures",
+      "Cross-cultural Communication",
+      "Legal Documentation"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Training Course for Peer Supporters!",
+    "issuer": "Finnish Refugee Council",
+    "date": "Jun 2025",
+    "expires": "Jun 2029",
+    "fullTitle": "Training Course for Peer Supporters",
+    "skills": [
+      "Peer Support",
+      "Mental Health Support",
+      "Community Building",
+      "Active Listening",
+      "Crisis Intervention"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Customer Success Foundations Professional Certificate",
+    "issuer": "ChurnZero",
+    "date": "Mar 2025",
+    "fullTitle": "Customer Success Foundations Professional Certificate",
+    "skills": [
+      "Customer Success",
+      "Customer Experience Management",
+      "Customer Loyalty",
+      "Account Management",
+      "Customer Retention"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Public Speaking Skills Professional Certificate",
+    "issuer": "Toastmasters International",
+    "date": "Feb 2025",
+    "fullTitle": "Public Speaking Skills Professional Certificate",
+    "skills": [
+      "Presentation Skills",
+      "Public Speaking",
+      "Speech Writing",
+      "Audience Engagement",
+      "Confidence Building"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "McKinsey Forward Program",
+    "issuer": "McKinsey & Company",
+    "date": "Dec 2024",
+    "fullTitle": "McKinsey Forward Program",
+    "skills": [
+      "Strategic Thinking",
+      "Problem Solving",
+      "Business Strategy",
+      "Leadership Development",
+      "Consulting Skills"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Train the trainer",
+    "issuer": "CodeRefinery",
+    "date": "Sep 2024",
+    "fullTitle": "Train the Trainer",
+    "skills": [
+      "Training Delivery",
+      "Curriculum Development",
+      "Instructional Design",
+      "Adult Learning",
+      "Workshop Facilitation"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Digital Marketing Growth Programme 2024",
+    "issuer": "Girls in Marketing",
+    "date": "Aug 2024",
+    "credentialId": "aed683f5-7e3a-4d8c-a3bd-059b6365001f",
+    "fullTitle": "Digital Marketing Growth Programme 2024",
+    "skills": [
+      "Digital Marketing",
+      "Growth Marketing",
+      "Marketing Strategy",
+      "Campaign Management",
+      "Marketing Analytics"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Enterprise Design Thinking Practitioner",
+    "issuer": "IBM",
+    "date": "Jun 2024",
+    "fullTitle": "Enterprise Design Thinking Practitioner",
+    "skills": [
+      "Design Thinking",
+      "User Experience Design",
+      "Innovation",
+      "Problem Solving",
+      "Human-Centered Design"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Bioinformatics trainer",
+    "issuer": "CSC - IT Center for Science",
+    "date": "Dec 2021",
+    "fullTitle": "Bioinformatics Trainer",
+    "skills": [
+      "Bioinformatics",
+      "Training Delivery",
+      "Scientific Computing",
+      "Data Analysis",
+      "Teaching"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Train-the-trainer online course for bioinformatics trainers",
+    "issuer": "CSC - IT Center for Science",
+    "date": "Dec 2021",
+    "fullTitle": "Train-the-Trainer Online Course for Bioinformatics Trainers",
+    "skills": [
+      "Train-the-Trainer",
+      "Bioinformatics",
+      "Online Teaching",
+      "Curriculum Development",
+      "Educational Technology"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Workshop for scRNA-seq data analysis trainers",
+    "issuer": "CSC - IT Center for Science",
+    "date": "Nov 2021",
+    "fullTitle": "Workshop for scRNA-seq Data Analysis Trainers",
+    "skills": [
+      "Single-cell RNA-seq",
+      "Data Analysis",
+      "Genomics",
+      "Training Delivery",
+      "Bioinformatics"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Schrodinger Maestro hands-on workshop",
+    "issuer": "CSC - IT Center for Science",
+    "date": "Oct 2021",
+    "fullTitle": "Schrodinger Maestro Hands-on Workshop",
+    "skills": [
+      "Molecular Modeling",
+      "Schrodinger Maestro",
+      "Computational Chemistry",
+      "Drug Discovery",
+      "Software Training"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Certified publons academy peer reviewer",
+    "issuer": "Publons",
+    "date": "Mar 2020",
+    "fullTitle": "Certified Publons Academy Peer Reviewer",
+    "skills": [
+      "Peer Review",
+      "Academic Publishing",
+      "Scientific Writing",
+      "Quality Assessment",
+      "Research Evaluation"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Certified professional trainer",
+    "issuer": "Expert foundation and academic secretary of expert foundation",
+    "date": "Jul 2016",
+    "fullTitle": "Certified Professional Trainer",
+    "skills": [
+      "Professional Training",
+      "Adult Education",
+      "Curriculum Design",
+      "Instructional Methods",
+      "Assessment"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Certified Practitioner of Hypnotherapy",
+    "issuer": "The mindcare organisation Ltd",
+    "date": "Dec 2013",
+    "fullTitle": "Certified Practitioner of Hypnotherapy",
+    "skills": [
+      "Hypnotherapy",
+      "Mental Health",
+      "Therapeutic Techniques",
+      "Client Care",
+      "Wellness"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Certified professional trainer",
+    "issuer": "International academies group",
+    "date": "Mar 2013",
+    "fullTitle": "Certified Professional Trainer",
+    "skills": [
+      "Professional Training",
+      "International Standards",
+      "Training Methodology",
+      "Adult Learning",
+      "Certification"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Certified Trainer in Personnal Strategic Planning",
+    "issuer": "IAPTLD Canada",
+    "date": "Apr 2012",
+    "fullTitle": "Certified Trainer in Personal Strategic Planning",
+    "skills": [
+      "Strategic Planning",
+      "Personal Development",
+      "Goal Setting",
+      "Training Delivery",
+      "Life Coaching"
+    ]
+  }
+] 
