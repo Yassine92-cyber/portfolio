@@ -1,5 +1,11 @@
 # 🔒 Security Checklist for Portfolio Website
 
+## **🌐 Public Website + Protected Code Strategy**
+
+### **Goal**: Allow public access to your portfolio website while preventing unauthorized code editing.
+
+---
+
 ## **GitHub Repository Security**
 
 ### **✅ Immediate Actions Required:**
@@ -9,11 +15,9 @@
    - Enable 2FA using authenticator app or SMS
    - Save backup codes securely
 
-2. **Make Repository Private (Recommended)**
-   - Go to repository Settings → General → Danger Zone
-   - Click "Change repository visibility"
-   - Select "Make private"
-   - Note: This will make the website private too
+2. **Keep Repository Public (for website access)**
+   - Repository should remain public so people can visit your website
+   - This allows: https://Yassine92-cyber.github.io/portfolio to work
 
 3. **Disable Forking**
    - Go to repository Settings → General
@@ -23,7 +27,7 @@
 4. **Disable Issues and Pull Requests**
    - Go to repository Settings → Features
    - Uncheck "Issues" and "Pull requests"
-   - This prevents public contributions
+   - This prevents public contributions and code changes
 
 5. **Protect Main Branch**
    - Go to repository Settings → Branches
@@ -31,6 +35,7 @@
    - Enable "Require a pull request before merging"
    - Enable "Require review from code owners"
    - Enable "Restrict pushes that create files"
+   - Enable "Require status checks to pass before merging"
 
 6. **Enable Security Features**
    - Go to repository Settings → Security & analysis
@@ -46,7 +51,7 @@
    - Go to repository Settings → Pages
    - Under "Source", ensure "Deploy from a branch" is selected
    - Select "gh-pages" branch and "/ (root)" folder
-   - If repository is private, only you can access the site
+   - Keep "Public" access for website visitors
 
 8. **Custom Domain Security (Optional)**
    - If using custom domain, enable HTTPS
@@ -131,6 +136,31 @@
 - [ ] Review and update content
 - [ ] Test backup and recovery procedures
 - [ ] Update contact information
+
+---
+
+## **🎯 Perfect Setup Summary**
+
+### **✅ What Visitors Can Do:**
+- ✅ Visit your website: https://Yassine92-cyber.github.io/portfolio
+- ✅ View your portfolio content
+- ✅ See your projects and experience
+- ✅ Contact you through provided information
+
+### **❌ What Visitors Cannot Do:**
+- ❌ Edit your code
+- ❌ Create pull requests
+- ❌ Open issues
+- ❌ Fork your repository
+- ❌ Access your private information
+- ❌ Modify your website content
+
+### **🔒 What You Control:**
+- 🔒 Full code editing access
+- 🔒 Repository management
+- 🔒 Website deployment
+- 🔒 Content updates
+- 🔒 Security settings
 
 ---
 

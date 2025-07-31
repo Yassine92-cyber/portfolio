@@ -8,16 +8,18 @@
 - **Authentication**: GitHub account with 2FA enabled
 
 ### Access Restrictions
-- **Collaborators**: None (private repository recommended)
-- **Forking**: Disabled
-- **Issues**: Disabled for public access
-- **Pull Requests**: Disabled for public access
+- **Repository Visibility**: Public (allows website access)
+- **Collaborators**: None (only owner can edit)
+- **Forking**: Disabled (prevents code copying)
+- **Issues**: Disabled (prevents public contributions)
+- **Pull Requests**: Disabled (prevents code changes)
 - **Wiki**: Disabled
 - **Discussions**: Disabled
 
 ### Deployment Security
-- **GitHub Pages**: Deploy from gh-pages branch only
-- **Branch Protection**: Main branch protected
+- **GitHub Pages**: Public access for website visitors
+- **Deploy Source**: gh-pages branch only
+- **Branch Protection**: Main branch protected from direct pushes
 - **Required Reviews**: At least 1 review required for main branch
 - **Status Checks**: Require branches to be up to date
 
