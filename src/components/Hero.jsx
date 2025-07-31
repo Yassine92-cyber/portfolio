@@ -150,7 +150,7 @@ const Hero = () => {
           title: "Marie Curie Postdoctoral Fellow at the University of Helsinki",
           period: "17.06.2021 to 28.02.2022",
           description: "Worked as a postdoc in VAHVISTUS Project: Integrative development of smart drug-vector nanostructures for adaptive delivery to target cells.",
-          image: "/TFPolyamine.png",
+          image: "TFPolyamine.png",
           achievements: [
             "Synthesized and analyzed Fluorinated polyamines as new anticancer agents with a yield of +70%",
             "Utilized advanced techniques: Schlenk method, column chromatography, and NMR spectroscopy",
@@ -162,7 +162,7 @@ const Hero = () => {
           title: "PhD in Organic, medicinal and computational chemistry at UMP Oujda",
           period: "01.12.2016 to 23.11.2020",
           description: "Top performing PhD student back then (H-index=9, Number of citations = 264), working on: 'Synthesis, biological evaluation and in Silico modelling studies of N-Alkylated hetero-cyclic compounds as multi-target drug candidates.'",
-          image: "/PhD.png",
+          image: "PhD.png",
           achievements: [
             "Conducted +150 experiments leading to synthesis of 36 compounds (Mono, Bis and Tetrakis azole ligands) with yield up to 98%",
             "Discovered 30 new compounds in scientific literature (Scifinder) through innovative synthesis approaches",
@@ -178,7 +178,7 @@ const Hero = () => {
           title: "Visiting researcher at University of Burgundy",
           period: "01.05.2017 to 31.07.2017",
           description: "Secured an internship abroad to work on the synthesis of a molecule not described in the literature (Scifinder): 'Diphosphines amino acids derivatives: Synthesis, Catalysis and bio-organometallic'",
-          image: "/Diphosphine.png",
+          image: "Diphosphine.png",
           achievements: [
             "Synthesized diphosphines amino acids using Schlenk technique and Huisgen cycloaddition mechanism reaction",
             "Purified products through Column chromatography and Celite filtration techniques",
@@ -221,7 +221,7 @@ const Hero = () => {
           title: "Master thesis worker at UMP Oujda",
           period: "Feb 2016 - Aug 2016",
           description: "Under project: 'Four new pyrazole ligands of N-C-N junction: Synthesis, characterization, corrosion inhibition of mild steel in HCl (1M) and theoretical study by GAUSSIAN 09W'",
-          image: "/M2.png",
+          image: "M2.png",
           achievements: [
             "Synthesized 4 four new N-C linked pyrazole ligands with a yield up to 96%",
             "Prepared excellent inhibitors of Mild steel corrosion in HCl (1M) with efficiency up to 92.4% proved by experimental techniques and DFT calculations ran on a local workstation",
@@ -340,7 +340,7 @@ const Hero = () => {
           title: "Author of 'Breeze and Dust'",
           period: "2010 - 2012",
           description: "Wrote and published the novel 'Breeze and Dust', a story about love, loss, and the power of human connection.",
-          image: "/Nassim.jpg",
+          image: "Nassim.jpg",
           achievements: [
             "Completed the novel in 2010",
             "Published in 2012",
@@ -909,29 +909,29 @@ const Hero = () => {
               <div className="flex gap-4 animate-scroll">
                 {/* First set of images */}
                 <div className="flex gap-4 flex-shrink-0">
-                  <img src="/1744181868427.jpg" alt="Media 1" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725215553851.jpg" alt="Media 2" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725609815426.jpg" alt="Media 3" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725990126678.jpg" alt="Media 4" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1727288326034.jpg" alt="Media 5" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20240718_091808.jpg" alt="Media 6" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20240718_091714.jpg" alt="Media 7" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231203_181003.jpg" alt="Media 9" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231203_180419.jpg" alt="Media 10" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1744181868427.jpg" alt="Media 1" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725215553851.jpg" alt="Media 2" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725609815426.jpg" alt="Media 3" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725990126678.jpg" alt="Media 4" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1727288326034.jpg" alt="Media 5" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
                 </div>
                 {/* Duplicate set for seamless scrolling */}
                 <div className="flex gap-4 flex-shrink-0">
-                  <img src="/1744181868427.jpg" alt="Media 1" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725215553851.jpg" alt="Media 2" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725609815426.jpg" alt="Media 3" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1725990126678.jpg" alt="Media 4" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/1727288326034.jpg" alt="Media 5" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20240718_091808.jpg" alt="Media 6" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20240718_091714.jpg" alt="Media 7" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231203_181003.jpg" alt="Media 9" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="/IMG_20231203_180419.jpg" alt="Media 10" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1744181868427.jpg" alt="Media 1" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725215553851.jpg" alt="Media 2" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725609815426.jpg" alt="Media 3" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1725990126678.jpg" alt="Media 4" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="1727288326034.jpg" alt="Media 5" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-48 h-32 object-cover rounded-lg shadow-lg" />
                 </div>
               </div>
             </div>
