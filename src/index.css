@@ -5,6 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
   
   body {
@@ -12,6 +14,27 @@
     font-sans: true;
     color: #1f2937; /* text-gray-800 */
     background-color: #F7F9FC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Improve touch targets */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better scrolling on mobile */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
 
@@ -68,5 +91,97 @@
   
   .animate-scroll {
     animation: scroll 30s linear infinite;
+  }
+
+  /* Mobile-specific animations */
+  @keyframes mobile-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-scroll-mobile {
+    animation: mobile-scroll 20s linear infinite;
+  }
+
+  /* Mobile touch feedback */
+  .mobile-touch {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Mobile card hover effects */
+  @media (max-width: 768px) {
+    .mobile-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .mobile-card:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Mobile scrollbar styling */
+  @media (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    /* Hide tooltips on mobile */
+    .group:hover .absolute {
+      display: none !important;
+    }
+
+    /* Mobile-specific optimizations */
+    .mobile-optimized {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    /* Better mobile scrolling */
+    .mobile-scroll {
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .mobile-scroll > * {
+      scroll-snap-align: start;
+    }
+
+    /* Mobile touch feedback */
+    .mobile-touch:active {
+      transform: scale(0.98);
+    }
+
+    /* Mobile text optimization */
+    .mobile-text {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 475px) {
+    .xs\:text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+    
+    .xs\:text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
   }
 } 
