@@ -467,7 +467,7 @@ const Hero = () => {
   return (
     <motion.div 
       id="hero"
-      className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-black text-white flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-b from-indigo-900 via-purple-800 to-black text-white flex items-center justify-center relative overflow-hidden w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -484,7 +484,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/50 via-purple-800/50 to-black/50"></div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto mt-16 sm:mt-20">
+      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto mt-16 sm:mt-20 lg:mt-24 xl:mt-28">
         {/* Hero Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -493,7 +493,7 @@ const Hero = () => {
           className="mb-8 sm:mb-12"
         >
           <motion.h1
-            className="text-3xl sm:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-extrabold mb-4 sm:mb-6 lg:mb-8 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -502,7 +502,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-            className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-200 max-w-3xl mx-auto leading-relaxed px-2"
+            className="text-lg sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-medium text-gray-200 max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto leading-relaxed px-2"
             initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -511,7 +511,7 @@ const Hero = () => {
         </motion.p>
 
           <motion.p
-            className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mt-3 sm:mt-4 px-4"
+            className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-300 max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto mt-3 sm:mt-4 lg:mt-6 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -522,7 +522,7 @@ const Hero = () => {
 
         {/* Glowing Lamp Buttons */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-8 sm:mb-12 px-2"
+          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 mb-8 sm:mb-12 lg:mb-16 xl:mb-20 px-2"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -546,15 +546,15 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 opacity-60 blur-xl group-hover:opacity-80 transition-opacity duration-300 animate-pulse"></div>
               
               {/* Lamp Button */}
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-yellow-300 to-orange-500 shadow-2xl flex items-center justify-center border-2 border-yellow-200/50 group-hover:border-yellow-100 transition-all duration-300">
-                <span className="text-xl sm:text-2xl lg:text-3xl group-hover:scale-110 transition-transform duration-300">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 rounded-full bg-gradient-to-br from-yellow-300 to-orange-500 shadow-2xl flex items-center justify-center border-2 border-yellow-200/50 group-hover:border-yellow-100 transition-all duration-300">
+                <span className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl group-hover:scale-110 transition-transform duration-300">
                   {lamp.emoji}
                 </span>
               </div>
               
               {/* Label */}
               <motion.p
-                className="text-xs sm:text-sm font-medium text-gray-200 mt-2 sm:mt-3 text-center"
+                className="text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium text-gray-200 mt-2 sm:mt-3 lg:mt-4 text-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3, delay: 1.2 + (index * 0.1) }}
@@ -576,15 +576,15 @@ const Hero = () => {
               transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 30 }}
               className="mt-2 mb-8 w-full max-w-4xl mx-auto"
             >
-              <div className="text-white p-4 sm:p-8 rounded-2xl w-full max-w-8xl mx-auto">
-                <div className="flex justify-center gap-2 sm:gap-4 w-full overflow-x-auto pb-4 sm:pb-0">
+              <div className="text-white p-4 sm:p-8 lg:p-12 xl:p-16 rounded-2xl w-full max-w-8xl mx-auto">
+                <div className="flex justify-center gap-2 sm:gap-4 lg:gap-6 xl:gap-8 w-full overflow-x-auto pb-4 sm:pb-0">
                   {lampButtons.find(l => l.id === activeId)?.roles.map((role, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.1 }}
-                      className="bg-white/5 rounded-lg py-3 sm:py-4 px-3 sm:px-4 border border-white/10 hover:bg-white/10 transition-all duration-300 relative group cursor-pointer w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center flex-shrink-0 mobile-touch mobile-card"
+                      className="bg-white/5 rounded-lg py-3 sm:py-4 lg:py-6 xl:py-8 px-3 sm:px-4 lg:px-6 xl:px-8 border border-white/10 hover:bg-white/10 transition-all duration-300 relative group cursor-pointer w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 2xl:w-64 2xl:h-64 flex items-center justify-center flex-shrink-0 mobile-touch mobile-card"
                       onClick={() => setSelectedRole(selectedRole === `${activeId}-${i}` ? null : `${activeId}-${i}`)}
                     >
                       {/* Tooltip for dates */}
@@ -763,21 +763,21 @@ const Hero = () => {
                 if (!roleDetails) return null;
                 
                 return (
-                  <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 rounded-2xl shadow-2xl border border-white/20">
-                    <div className="mb-4 sm:mb-6">
+                  <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 lg:p-12 xl:p-16 rounded-2xl shadow-2xl border border-white/20">
+                    <div className="mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
                     </div>
                     
-                    <p className="text-gray-200 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
+                    <p className="text-gray-200 text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed mb-4 sm:mb-6 lg:mb-8">
                       {roleDetails.description}
                     </p>
                     
                     {/* Image for Author section */}
                     {roleDetails.image && (
-                      <div className="flex justify-center mb-4 sm:mb-6">
+                      <div className="flex justify-center mb-4 sm:mb-6 lg:mb-8 xl:mb-10">
                         <motion.img
                           src={roleDetails.image}
                           alt="Book cover or author image"
-                          className="w-full max-w-[700px] h-48 sm:h-80 object-contain rounded-lg shadow-2xl border border-white/20 bg-white/5"
+                          className="w-full max-w-[700px] lg:max-w-[900px] xl:max-w-[1100px] h-48 sm:h-80 lg:h-96 xl:h-[500px] object-contain rounded-lg shadow-2xl border border-white/20 bg-white/5"
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: 0.2 }}
@@ -899,39 +899,39 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-4 mb-4 w-full max-w-6xl mx-auto"
+          className="mt-4 mb-4 w-full max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 rounded-2xl shadow-2xl border border-white/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-8">Media Bank</h3>
+          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 lg:p-12 xl:p-16 rounded-2xl shadow-2xl border border-white/20">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-8 lg:mb-12">Media Bank</h3>
             
             {/* Scrolling Image Gallery */}
             <div className="relative overflow-hidden">
               <div className="flex gap-2 sm:gap-4 animate-scroll sm:animate-scroll animate-scroll-mobile">
                 {/* First set of images */}
-                <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-                  <img src="1744181868427.jpg" alt="Media 1" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725215553851.jpg" alt="Media 2" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725609815426.jpg" alt="Media 3" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725990126678.jpg" alt="Media 4" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1727288326034.jpg" alt="Media 5" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
+                <div className="flex gap-2 sm:gap-4 lg:gap-6 xl:gap-8 flex-shrink-0">
+                  <img src="1744181868427.jpg" alt="Media 1" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725215553851.jpg" alt="Media 2" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725609815426.jpg" alt="Media 3" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725990126678.jpg" alt="Media 4" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1727288326034.jpg" alt="Media 5" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
                 </div>
                 {/* Duplicate set for seamless scrolling */}
-                <div className="flex gap-2 sm:gap-4 flex-shrink-0">
-                  <img src="1744181868427.jpg" alt="Media 1" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725215553851.jpg" alt="Media 2" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725609815426.jpg" alt="Media 3" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1725990126678.jpg" alt="Media 4" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="1727288326034.jpg" alt="Media 5" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
-                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-32 h-20 sm:w-48 sm:h-32 object-cover rounded-lg shadow-lg" />
+                <div className="flex gap-2 sm:gap-4 lg:gap-6 xl:gap-8 flex-shrink-0">
+                  <img src="1744181868427.jpg" alt="Media 1" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725215553851.jpg" alt="Media 2" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725609815426.jpg" alt="Media 3" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1725990126678.jpg" alt="Media 4" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="1727288326034.jpg" alt="Media 5" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091808.jpg" alt="Media 6" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20240718_091714.jpg" alt="Media 7" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231205_124228_0310.jpg" alt="Media 8" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_181003.jpg" alt="Media 9" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
+                  <img src="IMG_20231203_180419.jpg" alt="Media 10" className="w-32 h-20 sm:w-48 sm:h-32 lg:w-64 lg:h-40 xl:w-80 xl:h-48 object-cover rounded-lg shadow-lg" />
                 </div>
               </div>
             </div>
@@ -943,16 +943,16 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-4 mb-4 w-full max-w-6xl mx-auto"
+          className="mt-4 mb-4 w-full max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 rounded-2xl shadow-2xl border border-white/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-8">Skills, Tools & Certifications</h3>
+          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 lg:p-12 xl:p-16 rounded-2xl shadow-2xl border border-white/20">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-8 lg:mb-12">Skills, Tools & Certifications</h3>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
               {/* Skills Section */}
-              <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10 relative overflow-visible">
-                <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-blue-200 flex items-center gap-2">
-                  <span className="text-xl sm:text-2xl">🔬</span>
+              <div className="bg-white/5 rounded-xl p-4 sm:p-6 lg:p-8 xl:p-10 border border-white/10 relative overflow-visible">
+                <h4 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-blue-200 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">🔬</span>
                   Skills & Expertise
                 </h4>
                 <div className="space-y-3">
@@ -1159,12 +1159,12 @@ const Hero = () => {
 
 
               {/* Certifications Section */}
-              <div className="bg-white/5 rounded-xl p-4 sm:p-6 border border-white/10">
-                <h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-blue-200 flex items-center gap-2">
-                  <span className="text-xl sm:text-2xl">🏆</span>
+              <div className="bg-white/5 rounded-xl p-4 sm:p-6 lg:p-8 xl:p-10 border border-white/10">
+                <h4 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold mb-3 sm:mb-4 lg:mb-6 text-blue-200 flex items-center gap-2">
+                  <span className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl">🏆</span>
                   Certifications
                 </h4>
-                <div className="space-y-2 sm:space-y-3 max-h-80 sm:max-h-96 overflow-y-auto">
+                <div className="space-y-2 sm:space-y-3 lg:space-y-4 max-h-80 sm:max-h-96 lg:max-h-[500px] xl:max-h-[600px] overflow-y-auto">
                   <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 p-3 rounded-lg border border-yellow-500/30">
                     <h5 className="font-semibold text-yellow-300 text-sm">Peer Support & Finnish Legal System Advanced Training</h5>
                     <p className="text-gray-300 text-xs">Finnish Refugee Council</p>
@@ -1236,10 +1236,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
-          className="mt-4 mb-4 w-full max-w-6xl mx-auto"
+          className="mt-4 mb-4 w-full max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto"
         >
-          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 rounded-2xl shadow-2xl border border-white/20">
-            <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-8">Testimonials</h3>
+          <div className="bg-white/10 backdrop-blur-md text-white p-4 sm:p-8 lg:p-12 xl:p-16 rounded-2xl shadow-2xl border border-white/20">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 sm:mb-8 lg:mb-12">Testimonials</h3>
             
             {/* Testimonial Card with Navigation */}
             <div className="relative">
@@ -1251,16 +1251,16 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -20, scale: 0.95 }}
                     transition={{ duration: 0.4, type: "spring", stiffness: 300, damping: 30 }}
-                    className="bg-white/5 rounded-2xl p-4 sm:p-6 border border-white/10"
+                    className="bg-white/5 rounded-2xl p-4 sm:p-6 lg:p-8 xl:p-10 border border-white/10"
                   >
-                    <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center text-sm sm:text-lg font-bold text-white flex-shrink-0">
+                    <div className="flex items-start gap-3 sm:gap-4 lg:gap-6 mb-3 sm:mb-4 lg:mb-6">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold text-white flex-shrink-0">
                         {selectedTestimonial.initials}
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-base sm:text-lg font-bold text-white mb-1">{selectedTestimonial.name}</h4>
-                        <p className="text-blue-300 text-xs sm:text-sm mb-2">{selectedTestimonial.institution}</p>
-                        <span className={`inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${
+                        <h4 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white mb-1">{selectedTestimonial.name}</h4>
+                        <p className="text-blue-300 text-xs sm:text-sm lg:text-base xl:text-lg mb-2">{selectedTestimonial.institution}</p>
+                        <span className={`inline-block px-2 sm:px-3 lg:px-4 py-1 rounded-full text-xs sm:text-sm lg:text-base font-medium ${
                           selectedTestimonial.role === 'Manager' ? 'bg-green-500/20 text-green-300 border border-green-500/30' :
                           selectedTestimonial.role === 'Peer' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
                           'bg-purple-500/20 text-purple-300 border border-purple-500/30'
@@ -1269,7 +1269,7 @@ const Hero = () => {
                         </span>
                       </div>
                     </div>
-                    <blockquote className="text-gray-200 text-sm sm:text-lg leading-relaxed italic">
+                    <blockquote className="text-gray-200 text-sm sm:text-lg lg:text-xl xl:text-2xl leading-relaxed italic">
                       "{selectedTestimonial.testimonial}"
                     </blockquote>
                   </motion.div>
@@ -1277,34 +1277,34 @@ const Hero = () => {
               </AnimatePresence>
 
               {/* Navigation Buttons */}
-              <div className="flex justify-between items-center mt-4 sm:mt-6">
+              <div className="flex justify-between items-center mt-4 sm:mt-6 lg:mt-8 xl:mt-10">
                 {/* Back Button */}
                 <motion.button
                   onClick={goToPreviousTestimonial}
-                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all duration-300 mobile-touch"
+                  className="flex items-center gap-1 sm:gap-2 lg:gap-3 px-3 sm:px-4 lg:px-6 xl:px-8 py-2 lg:py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all duration-300 mobile-touch"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                  <span className="text-sm">Back</span>
+                  <span className="text-sm lg:text-base xl:text-lg">Back</span>
                 </motion.button>
 
                 {/* Testimonial Counter */}
-                <div className="text-white/60 text-xs sm:text-sm">
+                <div className="text-white/60 text-xs sm:text-sm lg:text-base xl:text-lg">
                   {currentTestimonialIndex + 1} / 22
                 </div>
 
                 {/* Next Button */}
                 <motion.button
                   onClick={goToNextTestimonial}
-                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all duration-300 mobile-touch"
+                  className="flex items-center gap-1 sm:gap-2 lg:gap-3 px-3 sm:px-4 lg:px-6 xl:px-8 py-2 lg:py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white transition-all duration-300 mobile-touch"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-sm">Next</span>
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="text-sm lg:text-base xl:text-lg">Next</span>
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </motion.button>
@@ -1318,22 +1318,22 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-4 mb-8 px-4"
+          className="mt-4 mb-8 px-4 lg:px-8 xl:px-12"
         >
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
             <motion.a
               href="https://linkedin.com/in/dr-yassine92"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 group cursor-default w-full sm:w-80 h-16 sm:h-20 mobile-touch"
+              className="inline-flex items-center space-x-3 sm:space-x-4 lg:space-x-6 xl:space-x-8 p-4 sm:p-6 lg:p-8 xl:p-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 group cursor-default w-full sm:w-80 lg:w-96 xl:w-[500px] h-16 sm:h-20 lg:h-24 xl:h-28 mobile-touch"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
-                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white" />
               </div>
               <div className="text-left">
-                <p className="text-blue-100 text-sm leading-relaxed">
+                <p className="text-blue-100 text-sm lg:text-base xl:text-lg leading-relaxed">
                   Let's connect on LinkedIn
                 </p>
               </div>
@@ -1344,15 +1344,15 @@ const Hero = () => {
               href="https://www.instagram.com/yassine_nature/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gradient-to-r from-purple-600 to-pink-700 rounded-xl hover:from-purple-700 hover:to-pink-800 transition-all duration-300 group cursor-default w-full sm:w-80 h-16 sm:h-20 mobile-touch"
+              className="inline-flex items-center space-x-3 sm:space-x-4 lg:space-x-6 xl:space-x-8 p-4 sm:p-6 lg:p-8 xl:p-10 bg-gradient-to-r from-purple-600 to-pink-700 rounded-xl hover:from-purple-700 hover:to-pink-800 transition-all duration-300 group cursor-default w-full sm:w-80 lg:w-96 xl:w-[500px] h-16 sm:h-20 lg:h-24 xl:h-28 mobile-touch"
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
-                <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                <Instagram className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white" />
               </div>
               <div className="text-left">
-                <p className="text-purple-100 text-sm leading-relaxed">
+                <p className="text-purple-100 text-sm lg:text-base xl:text-lg leading-relaxed">
                   Follow me on instagram
                 </p>
               </div>

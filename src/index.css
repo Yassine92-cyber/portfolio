@@ -184,4 +184,90 @@
       line-height: 1.25rem;
     }
   }
+
+  /* Large screens */
+  @media (min-width: 1536px) {
+    .container-2xl {
+      max-width: 1400px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .container-3xl {
+      max-width: 1600px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .container-4xl {
+      max-width: 2000px;
+    }
+  }
+
+  /* Ultra-wide screens */
+  @media (min-width: 3440px) {
+    .container-ultra {
+      max-width: 2400px;
+    }
+  }
+
+  /* Responsive font scaling */
+  @media (min-width: 1920px) {
+    .text-responsive {
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+    }
+    
+    .text-responsive-lg {
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+    }
+    
+    .text-responsive-xl {
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    }
+  }
+
+  /* Ultra-wide screen optimizations */
+  @media (min-width: 2560px) {
+    .container-ultra-wide {
+      max-width: 2400px;
+      margin: 0 auto;
+    }
+    
+    .text-ultra-wide {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+    }
+    
+    .spacing-ultra-wide {
+      padding: 2rem 4rem;
+    }
+  }
+
+  /* Landscape orientation optimizations */
+  @media (orientation: landscape) and (max-height: 600px) {
+    .landscape-compact {
+      padding: 1rem;
+      margin: 0.5rem 0;
+    }
+    
+    .landscape-text {
+      font-size: 0.875rem;
+    }
+  }
+
+  /* High DPI displays */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .high-dpi {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 } 
