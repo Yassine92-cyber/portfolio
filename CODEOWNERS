@@ -1,0 +1,14 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# @Yassine92-cyber will be requested for review when someone opens a pull request.
+
+* @Yassine92-cyber
+
+# Specific file ownership
+/src/ @Yassine92-cyber
+/public/ @Yassine92-cyber
+package.json @Yassine92-cyber
+package-lock.json @Yassine92-cyber
+README.md @Yassine92-cyber
+SECURITY.md @Yassine92-cyber
+SECURITY_CHECKLIST.md @Yassine92-cyber 

@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Integrative development of smart drug-vector nanostructures for adaptive delivery to target cells",
+    "description": "Led a €22K Marie Curie research project on smart drug delivery systems. Developed innovative nanostructures for targeted drug delivery with adaptive properties for enhanced therapeutic efficacy.",
+    "tech": ["Nanotechnology", "Drug Delivery", "Biopharma", "Research Leadership"],
+    "image": "nanostructures.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "Jun 2021 – Feb 2022",
+    "organization": "University of Helsinki"
+  },
+  {
+    "id": 2,
+    "title": "Synthesis, biological evaluation and in Silico modeling studies of N-Alkylated hetero-cyclic compounds",
+    "description": "PhD research project focusing on multi-target drug candidates. Synthesized 30+ novel compounds and published 17 research papers in top journals. Awarded Doctoriales Innovation Prize.",
+    "tech": ["Medicinal Chemistry", "Computational Chemistry", "Multi-target Drugs", "QSAR"],
+    "image": "phd-research.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "Dec 2016 – Nov 2020",
+    "organization": "Mohammed I University, Oujda"
+  },
+  {
+    "id": 3,
+    "title": "Diphosphines amino acids derivatives: Synthesis, Catalysis and bio-organometallic",
+    "description": "Research internship focusing on organometallic chemistry and catalysis. Developed novel diphosphine derivatives with potential applications in pharmaceutical synthesis.",
+    "tech": ["Organometallic Chemistry", "Catalysis", "Synthesis"],
+    "image": "organometallic.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "May 2017 – Aug 2017",
+    "organization": "Université de Bourgogne"
+  },
+  {
+    "id": 4,
+    "title": "Analysis of aflatoxins in food samples",
+    "description": "Analytical chemistry internship focused on food safety and toxicology. Developed methods for detecting and quantifying aflatoxins in food samples using advanced chromatography techniques.",
+    "tech": ["Food Safety", "Toxicology", "Chromatography", "Analytical Chemistry"],
+    "image": "food-safety.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "Aug 2016 – Sep 2016",
+    "organization": "ONSSA"
+  },
+  {
+    "id": 5,
+    "title": "Synthesis and corrosion inhibition of pyrazole ligands (N-C-N) studied by GAUSSIAN 09W",
+    "description": "Research project combining experimental synthesis with computational chemistry. Studied pyrazole-based corrosion inhibitors using quantum chemical calculations and experimental validation.",
+    "tech": ["Corrosion", "Pyrazole", "Computational Chemistry", "GAUSSIAN 09W"],
+    "image": "corrosion.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "Feb 2016 – Jul 2016",
+    "organization": "Chouaib Doukkali University, El Jadida"
+  },
+  {
+    "id": 6,
+    "title": "Drugs based on amino acids – design and synthesis",
+    "description": "Undergraduate research project focusing on drug design principles and amino acid-based therapeutics. Explored the synthesis and characterization of novel drug candidates.",
+    "tech": ["Drug Design", "Amino Acids", "Synthesis"],
+    "image": "amino-acids.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "research",
+    "date": "Feb 2014 – Jul 2014",
+    "organization": "Mohammed I University, Oujda"
+  },
+  {
+    "id": 7,
+    "title": "Hope Makers – Training & Mentorship Initiative",
+    "description": "Social project focused on education and community development. Led training sessions and mentorship programs to empower youth and promote personal growth.",
+    "tech": ["Education", "Mentorship", "Community Development", "Leadership"],
+    "image": "hope-makers.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "social",
+    "date": "May 2013 – Jul 2014",
+    "organization": "Everest Center for Training"
+  },
+  {
+    "id": 8,
+    "title": "Arabic book: Breeze and Dust (نسيم وغبار)",
+    "description": "Creative writing project resulting in a published Arabic book. Explored themes of personal growth, cultural identity, and human experience through storytelling.",
+    "tech": ["Arabic Literature", "Creative Writing", "Storytelling", "Cultural Expression"],
+    "image": "breeze-dust.jpg",
+    "demo": null,
+    "repo": null,
+    "category": "creative",
+    "date": "Aug 2010 – Sep 2012",
+    "organization": "Independent Publication"
+  }
+] 
