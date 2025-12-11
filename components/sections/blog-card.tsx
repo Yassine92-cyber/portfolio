@@ -31,7 +31,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
             transition: {
                 duration: 0.5,
                 delay: i * 0.05,
-                ease: [0.25, 0.4, 0.25, 1],
+                ease: [0.25, 0.4, 0.25, 1] as const,
             },
         }),
     };

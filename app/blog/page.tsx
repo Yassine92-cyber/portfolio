@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import toast from "react-hot-toast";
 import { BlogCard } from "@/components/sections/blog-card";
 import { BlogFilters } from "@/components/sections/blog-filters";
+import { Search } from "lucide-react";
 
 export default function BlogPage() {
     const [categoryFilter, setCategoryFilter] = useState<string>("all");
