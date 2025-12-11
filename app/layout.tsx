@@ -1,43 +1,47 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { ThemeProvider } from "@/components/ThemeProvider";
-
-// Dynamically import AnalyticsWrapper to avoid SSR issues
-const AnalyticsWrapper = dynamic(() => import("@/components/AnalyticsWrapper"), {
-  ssr: false,
-});
+import { PersonSchema, WebsiteSchema } from "@/components/structured-data";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { ReadingProgress } from "@/components/ui/reading-progress";
+import { Analytics } from "@vercel/analytics/react";
+import { ToasterProvider } from "@/components/ui/toaster-provider";
+import { ServiceWorkerRegister } from "@/components/service-worker-register";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Yassine Kaddouri - Bridge Builder & Peer Supporter",
-  description: "I help international talents and early-stage teams move from uncertainty to clarity by building opportunity systems and turning noise into signal.",
+  metadataBase: new URL("https://yassinekaddouri.com"),
+  title: {
+    default: "Yassine Kaddouri | Bridge Builder & Peer Supporter",
+    template: "%s | Yassine Kaddouri",
+  },
+  description: "Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.",
   keywords: [
     "Yassine Kaddouri",
     "Bridge Builder",
     "Peer Supporter",
-    "International Talents",
-    "Career Support",
-    "Community Building",
-    "Scientist to Strategist",
-    "Helsinki",
-    "Finland",
-    "Peer Support",
-    "Career Development",
+    "Community Builder",
+    "B2B SaaS",
     "Business Development",
+    "Startup Ecosystem",
+    "Finland",
+    "International Talent",
+    "Career Development",
+    "Peer Support",
+    "Integration Coaching",
   ],
   authors: [{ name: "Yassine Kaddouri" }],
   creator: "Yassine Kaddouri",
-  metadataBase: new URL("https://yassinekaddouri.com"),
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://yassinekaddouri.com",
-    title: "Yassine Kaddouri - Bridge Builder & Peer Supporter",
-    description: "I help international talents and early-stage teams move from uncertainty to clarity by building opportunity systems and turning noise into signal.",
     siteName: "Yassine Kaddouri Portfolio",
+    title: "Yassine Kaddouri | Bridge Builder & Peer Supporter",
+    description: "Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.",
     images: [
       {
-        url: "/og-image.jpg", // You'll need to create this image (1200x630px)
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Yassine Kaddouri - Bridge Builder & Peer Supporter",
@@ -46,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yassine Kaddouri - Bridge Builder & Peer Supporter",
-    description: "I help international talents and early-stage teams move from uncertainty to clarity by building opportunity systems and turning noise into signal.",
+    title: "Yassine Kaddouri | Bridge Builder & Peer Supporter",
+    description: "Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -61,6 +65,25 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    // Add your verification codes here when available
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
+    // bing: "your-bing-verification-code",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#6366f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#030303" },
+  ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -70,41 +93,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Yassine Kaddouri",
-              jobTitle: "Bridge Builder & Peer Supporter",
-              description: "I help international talents and early-stage teams move from uncertainty to clarity by building opportunity systems and turning noise into signal.",
-              url: "https://yassinekaddouri.com",
-              sameAs: [
-                "https://linkedin.com/in/yassinekaddouri",
-              ],
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Helsinki",
-                addressCountry: "FI",
-              },
-              knowsAbout: [
-                "Peer Support",
-                "Community Building",
-                "Business Development",
-                "Scientific Research",
-                "International Talent Support",
-              ],
-            }),
-          }}
-        />
-      </head>
-      <body>
-        <ThemeProvider>
-          <AnalyticsWrapper />
-          {children}
-        </ThemeProvider>
+      <body suppressHydrationWarning>
+        <PersonSchema />
+        <WebsiteSchema />
+        <ReadingProgress />
+        {children}
+        <Footer />
+        <ScrollToTop />
+        <Analytics />
+        <ToasterProvider />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

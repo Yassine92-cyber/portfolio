@@ -1,203 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 78, 90, 98; /* Kind Gray */
-  --background-start-rgb: 250, 249, 247; /* Clarity Off-White */
-  --background-end-rgb: 250, 249, 247;
+@layer base {
+  :root {
+    --background: 3 3 3;
+    --foreground: 255 255 255;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: #FAF9F7; /* Clarity Off-White */
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  font-feature-settings: "kern" 1, "liga" 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 8s linear infinite;
+  }
 }
 
-.dark body {
-  background: #0F172A; /* Dark slate */
-  color: #E2E8F0; /* Light gray */
-}
-
-/* Typography System */
-h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.75rem, 5vw, 3.75rem); /* 44-60px */
-  line-height: 1.2;
-  color: #1A324A; /* Deep Bridge Blue */
-  transition: color 0.3s ease;
-}
-
-.dark h1 {
-  color: #F1F5F9; /* Light slate */
-}
-
-h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: clamp(2rem, 4vw, 2.5rem); /* 32-40px */
-  line-height: 1.3;
-  color: #1A324A;
-  transition: color 0.3s ease;
-}
-
-.dark h2 {
-  color: #F1F5F9;
-}
-
-h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: clamp(1.5rem, 3vw, 1.75rem); /* 24-28px */
-  line-height: 1.4;
-  color: #1A324A;
-  transition: color 0.3s ease;
-}
-
-.dark h3 {
-  color: #E2E8F0;
-}
-
-p, body {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(1.125rem, 2vw, 1.25rem); /* 18-20px */
-  line-height: 1.6;
-  color: #4E5A62; /* Kind Gray */
-  transition: color 0.3s ease;
-}
-
-.dark p {
-  color: #CBD5E1; /* Light gray */
-}
-
-blockquote, .quote {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.5rem, 3vw, 1.875rem); /* 24-30px */
-  line-height: 1.5;
-  color: #1A324A;
-  transition: color 0.3s ease;
-}
-
-.dark blockquote,
-.dark .quote {
-  color: #E2E8F0;
-}
-
-/* Hand-drawn style border */
-@keyframes draw {
+@keyframes shimmer {
   from {
-    stroke-dashoffset: 1000;
+    background-position: 0% 50%;
   }
   to {
-    stroke-dashoffset: 0;
+    background-position: 200% 50%;
   }
 }
 
-/* Subtle texture overlay */
-.texture-overlay {
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.01) 2px,
-      rgba(0, 0, 0, 0.01) 4px
-    );
-}
-
-/* Handwritten style */
-.handwritten {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-style: italic;
-  transform: rotate(-1deg);
-  display: inline-block;
-}
-
-html,
 body {
-  height: 100%;
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF9F7;
-  border-radius: 10px;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3AAFA9;
-  border-radius: 10px;
+  background: #333;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1A324A;
+  background: #444;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3AAFA9;
-}
+@media print {
+  nav, button, .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
 
-/* Screen reader only class */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.sr-only:focus,
-.sr-only:active {
-  position: static;
-  width: auto;
-  height: auto;
-  padding: inherit;
-  margin: inherit;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  /* Hide decorative elements */
+  .absolute {
+    display: none !important;
   }
 }
 
-/* Focus indicators */
-*:focus-visible {
-  outline: 2px solid #3AAFA9;
-  outline-offset: 2px;
-  border-radius: 4px;
+/* Hide scrollbar for specific elements but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
+/* Infinite Scroll Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

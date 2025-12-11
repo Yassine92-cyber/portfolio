@@ -1,137 +1,148 @@
-# Portfolio Website
+# Portfolio Project
 
-A modern, responsive portfolio website built with Next.js, featuring dark mode, 3D animations, and a clean design.
+A modern portfolio website built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
 
-## 🌐 Live Site
+## Project Structure
 
-Visit: [https://Yassine92-cyber.github.io/portfolio](https://Yassine92-cyber.github.io/portfolio)
-
-## ✨ Features
-
-- **Dark/Light Mode Toggle** - Seamless theme switching with persistent preferences
-- **3D Hero Section** - Interactive Three.js background with floating particles
-- **Responsive Design** - Mobile-first approach with Tailwind CSS
-- **Performance Optimized** - Static export for fast loading
-- **Accessibility** - WCAG compliant with proper ARIA labels
-- **SEO Optimized** - Meta tags, sitemap, and structured data
-
-## 🚀 Tech Stack
-
-- **Framework**: Next.js 14 (Static Export)
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **3D Graphics**: Three.js, @react-three/fiber, @react-three/drei
-- **TypeScript**: Full type safety
-- **Deployment**: GitHub Pages
-
-## 📁 Project Structure
+This project follows the **shadcn/ui** project structure:
 
 ```
-├── app/                    # Next.js app directory
+my portfolio/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Home page
-│   ├── blog/              # Blog page
-│   ├── contact/           # Contact page
-│   ├── journey/           # Journey timeline
-│   ├── publications/      # Publications list
-│   ├── services/          # Services page
-│   ├── store/            # Store (coming soon)
-│   └── testimonials/     # Testimonials page
-├── components/            # React components
-│   ├── Navigation.tsx    # Main navigation
-│   ├── Hero3D.tsx        # Hero section with 3D
-│   ├── ThemeToggle.tsx   # Dark mode toggle
-│   └── ...
-├── public/               # Static assets
-│   ├── logos/           # Organization logos
-│   └── blog-thumbnails/ # Blog post images
-├── data/                # Data files
-│   ├── testimonials.ts  # Testimonial data
-│   └── publications.ts  # Publication data
-└── out/                 # Static export output (generated)
+│   └── globals.css        # Global styles with Tailwind
+├── components/
+│   ├── ui/                # shadcn/ui components (IMPORTANT: This folder is required)
+│   │   └── shape-landing-hero.tsx
+│   └── demo.tsx           # Demo component
+├── lib/
+│   └── utils.ts           # Utility functions (cn helper)
+├── components.json        # shadcn/ui configuration
+├── tailwind.config.ts     # Tailwind CSS configuration
+├── tsconfig.json          # TypeScript configuration
+└── package.json
 ```
 
-## 🛠️ Development
+## Why `/components/ui` is Important
+
+The `/components/ui` directory is the **default path for shadcn/ui components**. This folder is important because:
+
+1. **shadcn/ui CLI Convention**: When you run `npx shadcn@latest add [component]`, components are automatically installed to this directory
+2. **Consistency**: Following this convention makes it easy to add more shadcn/ui components later
+3. **Organization**: Separates reusable UI components from page-specific components
+4. **Configuration**: The `components.json` file is configured to use this path via the `aliases.ui` setting
+
+## Setup Instructions
 
 ### Prerequisites
 
-- Node.js 20 or higher
-- npm or yarn
+- Node.js 18+ installed
+- npm or yarn package manager
 
 ### Installation
+
+All dependencies have been installed. If you need to reinstall:
 
 ```bash
 npm install
 ```
 
-### Development Server
+### Installed Dependencies
+
+- **Next.js 16** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Component library (configured)
+- **framer-motion** - Animation library
+- **lucide-react** - Icon library
+- **clsx & tailwind-merge** - Utility functions for className merging
+
+## Running the Development Server
 
 ```bash
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build for Production
+## Building for Production
 
 ```bash
 npm run build
+npm start
 ```
 
-Static files will be generated in the `out/` directory.
+## Component Integration
 
-## 📦 Deployment
+### HeroGeometric Component
 
-This project is configured for automatic deployment to GitHub Pages via GitHub Actions.
+The `HeroGeometric` component is located at `/components/ui/shape-landing-hero.tsx` and is already integrated into the home page.
 
-### Manual Deployment
+**Props:**
+- `badge?: string` - Badge text (default: "Design Collective")
+- `title1?: string` - First line of title (default: "Elevate Your Digital Vision")
+- `title2?: string` - Second line of title (default: "Crafting Exceptional Websites")
 
-1. Build the project:
-   ```bash
-   npm run build
-   ```
+**Usage:**
 
-2. Push the `out` directory to the `gh-pages` branch:
-   ```bash
-   git subtree push --prefix out origin gh-pages
-   ```
+```tsx
+import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 
-### Automatic Deployment
-
-The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically:
-- Builds the project on push to `main`
-- Deploys to GitHub Pages
-- Updates the live site
-
-## 🎨 Customization
-
-### Colors
-
-Edit `tailwind.config.ts` to customize the color palette:
-
-```typescript
-colors: {
-  'bridge-blue': '#1A324A',
-  'signal-teal': '#3AAFA9',
-  // ... more colors
+function MyPage() {
+  return (
+    <HeroGeometric
+      badge="My Badge"
+      title1="First Title"
+      title2="Second Title"
+    />
+  );
 }
 ```
 
-### Content
+## Adding More shadcn/ui Components
 
-- **Testimonials**: Edit `data/testimonials.ts`
-- **Publications**: Edit `data/publications.ts`
-- **Blog Posts**: Edit `app/blog/page.tsx`
+To add more shadcn/ui components:
 
-## 📝 License
+```bash
+npx shadcn@latest add [component-name]
+```
 
-This project is private and proprietary.
+For example:
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add card
+```
 
-## 👤 Author
+Components will be automatically added to `/components/ui/`.
 
-**Yassine Kaddouri**
-- Portfolio: [https://Yassine92-cyber.github.io/portfolio](https://Yassine92-cyber.github.io/portfolio)
-- LinkedIn: [https://www.linkedin.com/in/dr-yassine92/](https://www.linkedin.com/in/dr-yassine92/)
+## Project Configuration
 
----
+### TypeScript
 
-Built with ❤️ using Next.js and Tailwind CSS
+- Configured with strict mode
+- Path aliases: `@/*` maps to project root
+- Next.js TypeScript plugin enabled
+
+### Tailwind CSS
+
+- Configured with shadcn/ui theme
+- CSS variables for theming
+- Dark mode support
+- Custom animations via `tailwindcss-animate`
+
+### shadcn/ui
+
+- Configured via `components.json`
+- Style: default
+- RSC (React Server Components) enabled
+- TypeScript enabled
+- CSS variables for theming
+
+## Notes
+
+- The component uses `"use client"` directive because it uses framer-motion (client-side animations)
+- All icons are from `lucide-react` - no external image assets required
+- The component is fully responsive with mobile-first design
+- No additional assets needed - everything is CSS-based
+

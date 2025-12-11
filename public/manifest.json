@@ -1,0 +1,22 @@
+{
+  "name": "Yassine Kaddouri | Bridge Builder & Peer Supporter",
+  "short_name": "Yassine Kaddouri",
+  "description": "Postdoc researcher turned B2B SaaS business developer and community builder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

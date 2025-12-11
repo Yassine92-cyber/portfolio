@@ -1,0 +1,39 @@
+# Public folder for static assets
+
+This folder contains static assets like images, icons, and other files that can be accessed directly via URL.
+
+## Usage
+
+In Next.js, files in the `public` folder are served from the root URL path.
+
+### Examples:
+
+- `public/hero-image.jpg` → accessible at `/hero-image.jpg`
+- `public/images/profile.jpg` → accessible at `/images/profile.jpg`
+- `public/cv.pdf` → accessible at `/cv.pdf`
+
+### In your components:
+
+```tsx
+// Using Next.js Image component
+import Image from 'next/image';
+<Image src="/hero-image.jpg" alt="Hero" width={800} height={600} />
+
+// Or regular img tag
+<img src="/hero-image.jpg" alt="Hero" />
+```
+
+## Recommended folder structure:
+
+```
+public/
+├── images/
+│   ├── profile/
+│   ├── projects/
+│   └── testimonials/
+├── icons/
+├── documents/
+│   └── cv.pdf
+└── assets/
+```
+
