@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Send, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { supabase } from "@/lib/supabase";
 
 interface FormData {
     name: string;
@@ -39,36 +40,28 @@ export function ContactForm() {
             position: "top-right",
         });
 
-        // Simulate API call - Replace with your actual form submission endpoint
-        // For now, this will use mailto as fallback
         try {
-            // TODO: Replace with actual form submission service (e.g., Formspree, SendGrid, etc.)
-            // Example with Formspree:
-            // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData),
-            // });
+            const { error } = await supabase
+                .from('contact_messages')
+                .insert([
+                    {
+                        name: formData.name,
+                        email: formData.email,
+                        subject: formData.subject,
+                        message: formData.message,
+                    },
+                ]);
 
-            // For now, simulate success
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            if (error) throw error;
 
             toast.success("Message sent successfully! I'll get back to you soon.", {
                 id: loadingToast,
                 duration: 5000,
             });
             setFormData({ name: "", email: "", subject: "", message: "" });
-
-            // Fallback: Open email client
-            const mailtoLink = `mailto:yassine.kaddouri@example.com?subject=${encodeURIComponent(
-                formData.subject
-            )}&body=${encodeURIComponent(
-                `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-            )}`;
-            // Uncomment to open email client as fallback:
-            // window.location.href = mailtoLink;
         } catch (error) {
-            toast.error("Failed to send message. Please try again or use the email link below.", {
+            console.error('Error sending message:', error);
+            toast.error("Failed to send message. Please try again or reach out via LinkedIn.", {
                 id: loadingToast,
                 duration: 5000,
             });
