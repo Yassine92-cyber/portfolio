@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
+export const dynamic = 'force-static'
 
 export const alt = 'Yassine Kaddouri | Bridge Builder & Peer Supporter'
 export const size = {

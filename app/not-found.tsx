@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Navigation } from '@/components/navigation';
+import { Navigation } from '@/components/Navigation';
 import { Home, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 

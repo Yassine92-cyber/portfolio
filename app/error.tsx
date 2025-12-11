@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Navigation } from '@/components/navigation';
+import { Navigation } from '@/components/Navigation';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';

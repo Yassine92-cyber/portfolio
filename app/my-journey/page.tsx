@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/navigation";
+import { Navigation } from "@/components/Navigation";
 import { MyJourneyPageContent } from "./my-journey-content";
 import type { Metadata } from "next";
 

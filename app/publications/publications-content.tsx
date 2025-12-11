@@ -1,6 +1,6 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
+import { Navigation } from "@/components/Navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, Search } from "lucide-react";
 import { useState, useMemo } from "react";

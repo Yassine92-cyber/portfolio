@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/navigation";
+import { Navigation } from "@/components/Navigation";
 import { HeroFintech } from "@/components/sections/hero-fintech";
 import { InfiniteMarquee } from "@/components/ui/infinite-marquee";
 import { SummaryCard } from "@/components/sections/summary-card";

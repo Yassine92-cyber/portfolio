@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/navigation";
+import { Navigation } from "@/components/Navigation";
 import { PublicationsPageContent } from "./publications-content";
 import type { Metadata } from "next";
 

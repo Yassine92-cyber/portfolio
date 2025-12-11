@@ -1,6 +1,6 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
+import { Navigation } from "@/components/Navigation";
 import { motion } from "framer-motion";
 
 export default function StorePage() {
