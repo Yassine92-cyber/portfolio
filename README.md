@@ -1,148 +1,116 @@
-# Portfolio Project
+🌍 Personal Portfolio Website
 
-A modern portfolio website built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
+This repository contains the source code for my personal portfolio website — a space where I share my work, ideas, and experiments at the intersection of scientific thinking, community building, and AI-driven operations.
 
-## Project Structure
+The website is designed to present my background, projects, and thought leadership in a clear, human-centered, and scalable way.
 
-This project follows the **shadcn/ui** project structure:
+✨ About Me
 
-```
-my portfolio/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   └── globals.css        # Global styles with Tailwind
-├── components/
-│   ├── ui/                # shadcn/ui components (IMPORTANT: This folder is required)
-│   │   └── shape-landing-hero.tsx
-│   └── demo.tsx           # Demo component
-├── lib/
-│   └── utils.ts           # Utility functions (cn helper)
-├── components.json        # shadcn/ui configuration
-├── tailwind.config.ts     # Tailwind CSS configuration
-├── tsconfig.json          # TypeScript configuration
+I’m a postdoctoral researcher turned B2B SaaS business developer, community builder, and AI operations practitioner.
+
+My work focuses on helping people and teams go from 0→1 by:
+
+Turning complexity into clarity
+
+Designing programs and communities that create real impact
+
+Building AI-assisted workflows that reduce noise and improve operations
+
+This portfolio reflects my belief that meaningful innovation happens when scientific insight, human connection, and technology come together.
+
+🧭 Purpose of This Project
+
+This website serves multiple purposes:
+
+📌 A professional portfolio for roles in Community & Programs, AI Ops, and Innovation
+
+🧠 A knowledge hub for ideas around community building, AI workflows, and career transitions
+
+🧪 A personal sandbox to experiment with design, content, and systems thinking
+
+🤝 A bridge for collaboration with founders, teams, and communities
+
+🛠️ Tech Stack
+
+(Adjust if needed)
+
+Frontend: HTML / CSS / JavaScript
+
+Framework: React / Next.js / Astro (if applicable)
+
+Styling: Tailwind CSS / CSS Modules
+
+Content: Markdown / MDX
+
+Deployment: Vercel / Netlify
+
+Version Control: Git & GitHub
+
+The stack is intentionally lightweight, flexible, and easy to extend.
+
+📂 Structure Overview
+├── public/          # Static assets
+├── src/
+│   ├── components/  # Reusable UI components
+│   ├── pages/       # Pages and routes
+│   ├── content/     # Blog posts / case studies
+│   └── styles/      # Global and component styles
+├── README.md
 └── package.json
-```
 
-## Why `/components/ui` is Important
+🚀 Getting Started
 
-The `/components/ui` directory is the **default path for shadcn/ui components**. This folder is important because:
+Clone the repository:
 
-1. **shadcn/ui CLI Convention**: When you run `npx shadcn@latest add [component]`, components are automatically installed to this directory
-2. **Consistency**: Following this convention makes it easy to add more shadcn/ui components later
-3. **Organization**: Separates reusable UI components from page-specific components
-4. **Configuration**: The `components.json` file is configured to use this path via the `aliases.ui` setting
+git clone https://github.com/your-username/your-portfolio-repo.git
+cd your-portfolio-repo
 
-## Setup Instructions
 
-### Prerequisites
+Install dependencies:
 
-- Node.js 18+ installed
-- npm or yarn package manager
-
-### Installation
-
-All dependencies have been installed. If you need to reinstall:
-
-```bash
 npm install
-```
 
-### Installed Dependencies
 
-- **Next.js 16** - React framework
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Component library (configured)
-- **framer-motion** - Animation library
-- **lucide-react** - Icon library
-- **clsx & tailwind-merge** - Utility functions for className merging
+Run locally:
 
-## Running the Development Server
-
-```bash
 npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Building for Production
+Build for production:
 
-```bash
 npm run build
-npm start
-```
 
-## Component Integration
+📌 Key Sections of the Website
 
-### HeroGeometric Component
+Home – Personal positioning and mission
 
-The `HeroGeometric` component is located at `/components/ui/shape-landing-hero.tsx` and is already integrated into the home page.
+About – Career story and “why I do what I do”
 
-**Props:**
-- `badge?: string` - Badge text (default: "Design Collective")
-- `title1?: string` - First line of title (default: "Elevate Your Digital Vision")
-- `title2?: string` - Second line of title (default: "Crafting Exceptional Websites")
+Projects – Community programs, AI workflows, and experiments
 
-**Usage:**
+Writing – Essays on science, careers, AI, and innovation
 
-```tsx
-import { HeroGeometric } from "@/components/ui/shape-landing-hero";
+Contact – Ways to collaborate or connect
 
-function MyPage() {
-  return (
-    <HeroGeometric
-      badge="My Badge"
-      title1="First Title"
-      title2="Second Title"
-    />
-  );
-}
-```
+🧠 Philosophy
 
-## Adding More shadcn/ui Components
+This project follows a simple principle:
 
-To add more shadcn/ui components:
+Reduce noise. Increase signal. Build with purpose.
 
-```bash
-npx shadcn@latest add [component-name]
-```
+Everything here is an experiment — iterated with curiosity, evidence, and human-centered design.
 
-For example:
-```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-```
+🤝 Connect
 
-Components will be automatically added to `/components/ui/`.
+🌐 Website: https://yourportfolio.com
 
-## Project Configuration
+🔗 LinkedIn: https://linkedin.com/in/yourprofile
 
-### TypeScript
+📧 Email: your@email.com
 
-- Configured with strict mode
-- Path aliases: `@/*` maps to project root
-- Next.js TypeScript plugin enabled
+If you’re working on community-led initiatives, AI-enabled operations, innovation programs, or talent ecosystems, I’d love to connect.
 
-### Tailwind CSS
+📜 License
 
-- Configured with shadcn/ui theme
-- CSS variables for theming
-- Dark mode support
-- Custom animations via `tailwindcss-animate`
-
-### shadcn/ui
-
-- Configured via `components.json`
-- Style: default
-- RSC (React Server Components) enabled
-- TypeScript enabled
-- CSS variables for theming
-
-## Notes
-
-- The component uses `"use client"` directive because it uses framer-motion (client-side animations)
-- All icons are from `lucide-react` - no external image assets required
-- The component is fully responsive with mobile-first design
-- No additional assets needed - everything is CSS-based
-
+This project is open for inspiration and learning.
+Please do not copy the content verbatim without permission.
