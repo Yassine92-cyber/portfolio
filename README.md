@@ -58,28 +58,6 @@ The stack is intentionally lightweight, flexible, and easy to extend.
 ├── README.md
 └── package.json
 
-🚀 Getting Started
-
-Clone the repository:
-
-git clone https://github.com/your-username/your-portfolio-repo.git
-cd your-portfolio-repo
-
-
-Install dependencies:
-
-npm install
-
-
-Run locally:
-
-npm run dev
-
-
-Build for production:
-
-npm run build
-
 📌 Key Sections of the Website
 
 Home – Personal positioning and mission
@@ -100,13 +78,6 @@ Reduce noise. Increase signal. Build with purpose.
 
 Everything here is an experiment — iterated with curiosity, evidence, and human-centered design.
 
-🤝 Connect
-
-🌐 Website: https://yourportfolio.com
-
-🔗 LinkedIn: https://linkedin.com/in/yourprofile
-
-📧 Email: your@email.com
 
 If you’re working on community-led initiatives, AI-enabled operations, innovation programs, or talent ecosystems, I’d love to connect.
 
