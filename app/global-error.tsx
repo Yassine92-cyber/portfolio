@@ -1,7 +1,6 @@
 'use client';
 
 export default function GlobalError({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };
@@ -9,16 +8,16 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body>
-        <div className="flex items-center justify-center min-h-screen bg-[#030303] text-white p-4">
+      <body style={{ margin: 0, background: "#090B10", color: "#F6F4F0", fontFamily: "system-ui, sans-serif" }}>
+        <div className="flex items-center justify-center min-h-screen p-4">
           <div className="text-center max-w-md">
             <h1 className="text-3xl font-bold mb-4">Something went wrong!</h1>
-            <p className="text-white/60 mb-6">
+            <p className="mb-6 opacity-70">
               We encountered an unexpected error. Please refresh the page.
             </p>
             <button
               onClick={reset}
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-medium hover:from-indigo-600 hover:to-rose-600 transition-all"
+              style={{ background: "#F6F4F0", color: "#090B10", border: 0, borderRadius: 9999, padding: "12px 24px", fontWeight: 500, cursor: "pointer" }}
             >
               Try again
             </button>
