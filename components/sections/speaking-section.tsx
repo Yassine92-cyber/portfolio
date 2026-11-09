@@ -66,7 +66,7 @@ export function SpeakingSection() {
                                 href="#contact"
                                 className="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-medium hover:from-indigo-600 hover:to-rose-600 transition-all"
                             >
-                                Interested in having me speak or facilitate? Let's talk.
+                                Interested in having me speak or facilitate? Let&apos;s talk.
                             </a>
                         </div>
                     </motion.div>
@@ -75,4 +75,3 @@ export function SpeakingSection() {
         </section>
     );
 }
-
