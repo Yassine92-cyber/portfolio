@@ -1,3 +1,107 @@
+// Orinavis copy is limited to what is stated publicly on orinavis.com.
+export const orinavis = {
+    name: "Orinavis",
+    url: "https://orinavis.com",
+    role: "Founder & CEO",
+    tagline: "Career intelligence for coaching",
+    status: "Founding-coach beta · Open in Finland",
+    problem:
+        "Evidence gets rewritten for every application, and much of a coaching hour goes on reconstructing what happened since the last session.",
+    whyFounded:
+        "I have seen this problem from both sides: rebuilding my own career in Finland after a Marie Curie postdoc, and supporting international talents through mentoring, peer support and the Career Boost Network. Capable people often have real evidence of their skills and no clear way to show it or act on it.",
+    users:
+        "Career coaches and the people they work with. The job seeker owns the career record and chooses who can see it; the coach works from the parts that have been shared.",
+    company: "Orinavis Oy, Helsinki",
+    pillars: [
+        {
+            title: "Skills evidence",
+            body: "Experience, outcomes and materials become structured evidence with enough context to be credible, reusable across roles instead of rewritten each time.",
+            status: "In beta",
+        },
+        {
+            title: "Career intelligence",
+            body: "Opportunity Fit compares that evidence with what a role asks for and marks each requirement strong, partial or needing proof, with the reasoning shown.",
+            status: "In beta",
+        },
+        {
+            title: "Human-centered guidance",
+            body: "Coach and client review the gaps together and agree a few actions. Decision support only: no automated hiring decisions, no hidden scoring, sharing by consent.",
+            status: "In beta",
+        },
+    ],
+    vision:
+        "Specialists and trusted supporters, joining with scoped and revocable access, are expanding during the beta. Organisation and programme access is inquiry-led and not self-serve in the founding beta.",
+    loop: ["Capture evidence", "Understand opportunities", "Decide what matters", "Move forward"],
+};
+
+export type CaseStudy = {
+    title: string;
+    category: string;
+    role: string;
+    period: string;
+    summary: string;
+    evidence: string[];
+    metric: { value: string; label: string };
+    href?: string;
+};
+
+// Sourced from the timeline in app/my-journey/my-journey-content.tsx.
+export const caseStudies: CaseStudy[] = [
+    {
+        title: "Everest Center",
+        category: "Venture",
+        role: "Co-founder & COO",
+        period: "2013 – 2014 · Oujda, Morocco",
+        summary:
+            "Launched the centre's operations end-to-end and managed marketing, partner communications and event logistics.",
+        evidence: [
+            "Delivered the Hope Makers programme to 92 students.",
+            "Grew revenue by 60% within six months.",
+        ],
+        metric: { value: "+60%", label: "revenue in six months" },
+    },
+    {
+        title: "B2B pipeline for an innovation-readiness platform",
+        category: "B2B SaaS",
+        role: "Business Development Manager · Yellow Method Oy",
+        period: "2024 · Helsinki",
+        summary:
+            "Built outbound and investor pipelines for a research-based platform that assesses organisational innovation readiness.",
+        evidence: [
+            "Researched 250+ companies and 600+ contacts; secured 11 B2B meetings.",
+            "Built an investor list of 27 VCs and improved HubSpot funnel visibility.",
+        ],
+        metric: { value: "11", label: "B2B meetings secured" },
+    },
+    {
+        title: "Career Boost Network",
+        category: "Community",
+        role: "Founder & host",
+        period: "Helsinki",
+        summary:
+            "Launched a career network and hosted job-strategy webinars while volunteering at Slush, Junction and Arctic15.",
+        evidence: [
+            "Grew the network to 191 members and hosted two webinars on job strategy.",
+            "Sustainability Lead at Slush and Head of Global Acquisition at Junction in 2023.",
+        ],
+        metric: { value: "191", label: "network members" },
+    },
+    {
+        title: "Multi-lab research coordination",
+        category: "Research",
+        role: "Doctoral Researcher · Mohammed I University",
+        period: "2016 – 2020 · Oujda, Morocco",
+        summary:
+            "Coordinated collaborative chemistry research across institutions while publishing on heterocyclic compounds, drug candidates and corrosion inhibition.",
+        evidence: [
+            "Coordinated 8 labs across 7 institutions and 4 countries.",
+            "Cut turnaround time from ~90 days to 14–21 days by standardising requests and rerouting shipments.",
+        ],
+        metric: { value: "8 labs", label: "across 4 countries" },
+        href: "/publications",
+    },
+];
+
 export const projects = [
     {
         title: "PromptCraft",
@@ -37,3 +141,7 @@ export const projects = [
     },
 ];
 
+// VentureLens still points at a placeholder GPT id; its description tells visitors to search the GPT store.
+export function hasLiveLink(project: (typeof projects)[number]) {
+    return !project.link.includes("g-some-id");
+}
