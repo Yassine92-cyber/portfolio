@@ -145,3 +145,4 @@ export const projects = [
 export function hasLiveLink(project: (typeof projects)[number]) {
     return !project.link.includes("g-some-id");
 }
+
