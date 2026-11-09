@@ -1,10 +1,9 @@
 "use client";
 
-import { Navigation } from "@/components/Navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useState, useMemo } from "react";
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { PageHeader, StatList } from "@/components/ui/page-header";
 import toast from "react-hot-toast";
 import { PublicationsFilters } from "@/components/sections/publications-filters";
 import { publications } from "@/lib/publications-data";
@@ -85,161 +84,125 @@ export function PublicationsPageContent() {
         setFieldFilter("all");
         setYearFilter("all");
         setSearchQuery("");
-        toast.success("Filters cleared", {
-            icon: "✨",
-            style: {
-                background: '#333',
-                color: '#fff',
-                borderRadius: '8px',
-                border: '1px solid rgba(255,255,255,0.1)'
-            }
-        });
+        toast.success("Filters cleared");
     };
 
     return (
-        <section className="relative py-12 md:py-16 pt-32">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="max-w-5xl mx-auto">
-                    <Breadcrumbs items={[{ label: "Publications" }]} />
-                    
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="mb-12 md:mb-16"
-                    >
-                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
-                            <div>
-                                <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-rose-300">
-                                        Publications
-                                    </span>
-                                </h1>
-                                <p className="text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed">
-                                    Research papers, articles, and academic contributions
-                                </p>
-                            </div>
-                            <div className="hidden md:block text-right">
-                                <div className="text-3xl font-bold text-white">
-                                    {totalCitations}
-                                </div>
-                                <div className="text-sm text-white/40 uppercase tracking-wider font-medium">
-                                    Total Citations
-                                </div>
-                            </div>
-                        </div>
+        <div className="page-shell pb-24 pt-28 md:pb-32 md:pt-36">
+            <PageHeader
+                crumb="Research"
+                eyebrow="Research"
+                title={
+                    <>
+                        Publications, <em className="font-display italic text-warm-300">peer-reviewed.</em>
+                    </>
+                }
+                intro="Research papers and academic contributions across organic, computational and medicinal chemistry, and corrosion inhibition."
+                aside={
+                    <div className="space-y-2">
+                        <StatList
+                            items={[
+                                { value: filteredPublications.length, label: hasActiveFilters ? "Matching" : "Papers" },
+                                { value: totalCitations, label: "Citations" },
+                            ]}
+                        />
+                        <p className="font-mono text-[0.6875rem] uppercase tracking-wider text-paper/45">
+                            Totals from publications listed on this site
+                        </p>
+                    </div>
+                }
+            />
 
-                        {/* Mobile Stats */}
-                        <div className="md:hidden flex items-center justify-between text-white/40 text-sm mb-6 pb-6 border-b border-white/10">
-                            <div>
-                                <span className="text-white font-semibold">{filteredPublications.length}</span> publications
-                            </div>
-                            <div>
-                                <span className="text-white font-semibold">{totalCitations}</span> citations
-                            </div>
-                        </div>
-
-                        {/* Filters Bar */}
-                        <div className="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-2 backdrop-blur-sm">
-                            <PublicationsFilters
-                                fields={fields}
-                                years={years}
-                                selectedRole={authorFilter}
-                                selectedField={fieldFilter}
-                                selectedYear={yearFilter}
-                                searchQuery={searchQuery}
-                                onRoleChange={setAuthorFilter}
-                                onFieldChange={setFieldFilter}
-                                onYearChange={setYearFilter}
-                                onSearchChange={setSearchQuery}
-                                onClearFilters={clearFilters}
-                                hasActiveFilters={hasActiveFilters}
-                            />
-                        </div>
-                    </motion.div>
-
-                    {/* Results */}
-                    {sortedPublications.length === 0 ? (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.4 }}
-                            className="flex flex-col items-center justify-center py-20 text-center border border-dashed border-white/10 rounded-3xl bg-white/[0.01]"
-                        >
-                            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                                <Search className="w-8 h-8 text-white/20" />
-                            </div>
-                            <h3 className="text-xl font-semibold text-white mb-2">No publications found</h3>
-                            <p className="text-white/50 max-w-md mx-auto mb-6">
-                                We couldn't find any publications matching your filters. Try adjusting your search or criteria.
-                            </p>
-                            <button
-                                onClick={clearFilters}
-                                className="px-6 py-2.5 rounded-xl bg-white text-black font-medium hover:bg-white/90 transition-colors"
-                            >
-                                Clear all filters
-                            </button>
-                        </motion.div>
-                    ) : (
-                        <div className="space-y-4">
-                            <AnimatePresence mode="popLayout">
-                                {sortedPublications.map((pub, index) => (
-                                    <motion.div
-                                        key={`${pub.title}-${index}`}
-                                        custom={index}
-                                        variants={fadeUpVariants}
-                                        initial="hidden"
-                                        whileInView="visible"
-                                        viewport={{ once: true, margin: "-50px" }}
-                                        layout
-                                        className="group p-6 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] hover:border-indigo-500/30 transition-all duration-300"
-                                    >
-                                        <div className="flex items-start gap-4 md:gap-6">
-                                            {/* Icon */}
-                                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-indigo-500/10 to-rose-500/10 flex items-center justify-center flex-shrink-0 border border-white/5 group-hover:border-white/10 transition-colors">
-                                                <FileText className="w-5 h-5 md:w-6 md:h-6 text-indigo-400 group-hover:text-indigo-300 transition-colors" />
-                                            </div>
-
-                                            {/* Content */}
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 md:gap-8 mb-2">
-                                                    <h3 className="text-lg md:text-xl font-semibold text-white leading-snug group-hover:text-indigo-200 transition-colors">
-                                                        {pub.title}
-                                                    </h3>
-                                                    <div className="flex-shrink-0 flex items-center gap-3 text-sm">
-                                                        <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/60 font-medium">
-                                                            {pub.year}
-                                                        </span>
-                                                        <span className="text-indigo-400 font-medium whitespace-nowrap">
-                                                            {pub.citations} citation{pub.citations !== 1 ? 's' : ''}
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <p className="text-white/60 text-sm mb-3 line-clamp-2">
-                                                    {pub.authors}
-                                                </p>
-
-                                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/40">
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="font-medium text-white/60">{pub.journal}</span>
-                                                        {pub.volume && <span>• {pub.volume}</span>}
-                                                    </div>
-                                                    <div className="hidden md:block w-1 h-1 rounded-full bg-white/20" />
-                                                    <div className="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300/80 text-xs border border-indigo-500/20">
-                                                        {pub.field}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </div>
-                    )}
+            <div className="relative z-30 mt-10 md:sticky md:top-20 md:-mx-8 md:bg-ink/90 md:px-8 md:py-3 md:backdrop-blur-xl lg:-mx-12 lg:px-12">
+                <div className="rounded-2xl border border-line bg-ink-2 p-2">
+                    <PublicationsFilters
+                        fields={fields}
+                        years={years}
+                        selectedRole={authorFilter}
+                        selectedField={fieldFilter}
+                        selectedYear={yearFilter}
+                        searchQuery={searchQuery}
+                        onRoleChange={setAuthorFilter}
+                        onFieldChange={setFieldFilter}
+                        onYearChange={setYearFilter}
+                        onSearchChange={setSearchQuery}
+                        onClearFilters={clearFilters}
+                        hasActiveFilters={hasActiveFilters}
+                    />
                 </div>
             </div>
-        </section>
+
+            <p className="sr-only" role="status" aria-live="polite">
+                {sortedPublications.length} publications shown
+            </p>
+
+            {sortedPublications.length === 0 ? (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                    className="mt-10 flex flex-col items-center justify-center rounded-3xl border border-dashed border-paper/15 px-6 py-20 text-center"
+                >
+                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-line">
+                        <Search className="h-6 w-6 text-paper/50" aria-hidden="true" />
+                    </div>
+                    <h2 className="font-display text-display-sm text-paper">No publications match</h2>
+                    <p className="mx-auto mb-7 mt-3 max-w-md text-paper/70">
+                        Nothing matches these filters. Try a broader search or clear the criteria.
+                    </p>
+                    <button
+                        onClick={clearFilters}
+                        className="rounded-full bg-paper px-6 py-2.5 font-medium text-ink transition-colors hover:bg-violet-100"
+                    >
+                        Clear all filters
+                    </button>
+                </motion.div>
+            ) : (
+                <ol className="mt-6 border-t border-line">
+                    <AnimatePresence mode="popLayout">
+                        {sortedPublications.map((pub, index) => (
+                            <motion.li
+                                data-reveal=""
+                                key={`${pub.title}-${index}`}
+                                custom={index}
+                                variants={fadeUpVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                                layout
+                                className="group grid gap-4 border-b border-line py-7 md:grid-cols-12 md:gap-8"
+                            >
+                                <div className="flex items-center gap-4 md:col-span-2 md:flex-col md:items-start md:gap-2">
+                                    <span className="font-display text-3xl text-paper">{pub.year}</span>
+                                    {pub.firstAuthor && (
+                                        <span className="rounded-full border border-warm-400/40 px-2.5 py-0.5 font-mono text-[0.6875rem] uppercase tracking-wider text-warm-300">
+                                            First author
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="min-w-0 md:col-span-8">
+                                    <h2 className="text-lg font-medium leading-snug text-paper md:text-xl">
+                                        {pub.title}
+                                    </h2>
+                                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-paper/65">
+                                        {pub.authors}
+                                    </p>
+                                    <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+                                        <span className="italic text-paper/80">{pub.journal}</span>
+                                        {pub.volume && <span className="text-paper/60">{pub.volume}</span>}
+                                        <span className="rounded-full bg-violet-400/10 px-2.5 py-0.5 text-xs text-violet-200">
+                                            {pub.field}
+                                        </span>
+                                    </p>
+                                </div>
+                                <p className="font-mono text-sm text-paper/70 md:col-span-2 md:text-right">
+                                    <span className="text-paper">{pub.citations}</span> citation{pub.citations !== 1 ? "s" : ""}
+                                </p>
+                            </motion.li>
+                        ))}
+                    </AnimatePresence>
+                </ol>
+            )}
+        </div>
     );
 }

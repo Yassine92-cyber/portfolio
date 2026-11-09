@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Target, Zap, Sparkles, Brain, Rocket } from "lucide-react";
+import { Users, Target, Sparkles, Brain, Rocket } from "lucide-react";
 
 export function SummaryCard() {
   const features = [

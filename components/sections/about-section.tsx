@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 export function AboutSection() {
     const [imageError, setImageError] = useState(false);
@@ -80,7 +79,7 @@ export function AboutSection() {
                                 Postdoc researcher turned B2B SaaS business developer and community builder. I help people and teams go from 0→1 and turn noise into signal.
                             </p>
                             <p className="text-white/80 text-lg leading-relaxed mb-4">
-                                I've contributed in Finnish startup ecosystem like Slush, Junction, Arctic15, Maria 01 – helping activate communities, match founders and investors, and run programs for hundreds of participants.
+                                I&apos;ve contributed in Finnish startup ecosystem like Slush, Junction, Arctic15, Maria 01 – helping activate communities, match founders and investors, and run programs for hundreds of participants.
                             </p>
                             <p className="text-white/80 text-lg leading-relaxed">
                                 My work focuses on helping founders move from idea to traction, supporting international talent find clarity and opportunities, and designing programs that feel human. I bring structured thinking from research, empathy from peer support, and storytelling from building a 14,000+ person LinkedIn audience.

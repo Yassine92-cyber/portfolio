@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import { BlogPost } from "@/lib/blog-data";
-import { Calendar, Clock, ExternalLink, Linkedin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { getReadingTime } from "@/lib/utils";
 import { useState } from "react";
+import { EditorialCover } from "@/components/ui/editorial-cover";
 
 interface BlogCardProps {
     post: BlogPost;
@@ -15,110 +16,83 @@ interface BlogCardProps {
 
 export function BlogCard({ post, index }: BlogCardProps) {
     const [imageError, setImageError] = useState(false);
+    const useEditorial = !post.thumbnail || imageError;
 
-    const postDate = new Date(post.date);
-    const formattedDate = postDate.toLocaleDateString("en-US", {
+    const formattedDate = new Date(post.date).toLocaleDateString("en-GB", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "numeric",
+        timeZone: "UTC",
     });
-
-    const fadeUpVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5,
-                delay: i * 0.05,
-                ease: [0.25, 0.4, 0.25, 1] as const,
-            },
-        }),
-    };
+    const readingTime = getReadingTime(post.content ?? post.excerpt);
 
     return (
         <motion.article
-            custom={index}
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
+            data-reveal=""
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: Math.min(index, 8) * 0.04, ease: [0.22, 1, 0.36, 1] }}
             layout
-            className="group flex flex-col h-full rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 overflow-hidden"
+            className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-ink-2 transition-colors duration-300 hover:border-paper/25"
         >
-            {/* Thumbnail */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0a0a0a]">
-                {!imageError ? (
-                    <Image
-                        src={post.thumbnail}
-                        alt={`Thumbnail for ${post.title}`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        onError={() => setImageError(true)}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface">
+                {useEditorial ? (
+                    <EditorialCover title={post.title} category={post.category} compact />
                 ) : (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-500/10 to-rose-500/10">
-                        <span className="text-white/20 text-sm font-medium">No Image</span>
-                    </div>
+                    <>
+                        <Image
+                            src={post.thumbnail!}
+                            alt=""
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
+                            onError={() => setImageError(true)}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div
+                            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-2/70 via-transparent to-transparent"
+                            aria-hidden="true"
+                        />
+                    </>
                 )}
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white shadow-sm">
-                        {post.category}
-                    </span>
-                </div>
             </div>
 
-            {/* Content */}
-            <div className="flex flex-col flex-1 p-6">
-                {/* Meta */}
-                <div className="flex items-center gap-4 text-xs text-white/50 mb-3">
-                    <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <time dateTime={post.date}>{formattedDate}</time>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>1 min read</span>
-                    </div>
-                </div>
+            <div className="flex flex-1 flex-col p-6 md:p-7">
+                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-paper/60">
+                    <span className="text-violet-300">{post.category}</span>
+                    <span aria-hidden="true">·</span>
+                    <time dateTime={post.date}>{formattedDate}</time>
+                    <span aria-hidden="true">·</span>
+                    <span>{readingTime} min read</span>
+                </p>
 
-                {/* Title */}
-                <h2 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-indigo-300 transition-colors">
-                    {post.title}
+                <h2 className="mt-4 font-display text-[1.375rem] leading-snug text-paper">
+                    <Link
+                        href={`/blog/${post.slug}`}
+                        className="rounded-sm after:absolute after:inset-0 after:content-[''] group-hover:text-violet-100"
+                    >
+                        {post.title}
+                    </Link>
                 </h2>
 
-                {/* Description */}
-                <p className="text-sm text-white/60 line-clamp-3 mb-6 flex-1">
+                <p className="mt-3 line-clamp-3 flex-1 text-[0.9375rem] leading-relaxed text-paper/70">
                     {post.excerpt}
                 </p>
 
-                {/* Footer / CTA */}
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
-                    {/* Primary CTA: Check if internal URL exists or placeholder */}
-                    <Link
-                        href={`/blog/${post.slug}`} 
-                        className="text-sm font-medium text-white hover:text-indigo-300 transition-colors flex items-center gap-1"
-                    >
-                        Read more
-                    </Link>
-
-                    {/* Source / External Link */}
+                <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
+                    <span className="text-sm font-medium text-paper" aria-hidden="true">
+                        Read article
+                    </span>
                     <a
                         href={post.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs text-white/40 hover:text-indigo-400 transition-colors px-2 py-1 rounded-md hover:bg-white/5"
-                        aria-label={`Read ${post.title} on LinkedIn`}
+                        className="relative z-10 inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs text-paper/60 transition-colors hover:text-paper"
+                        aria-label={`Read ${post.title} on LinkedIn (opens in a new tab)`}
                     >
-                        <Linkedin className="w-3.5 h-3.5" />
-                        <span>LinkedIn</span>
-                        <ExternalLink className="w-3 h-3" />
+                        LinkedIn <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                     </a>
                 </div>
             </div>
         </motion.article>
     );
 }
-

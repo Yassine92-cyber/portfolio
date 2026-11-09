@@ -27,7 +27,7 @@ export function CopyEmailButton({ email, className = "" }: CopyEmailButtonProps)
             onClick={handleCopy}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.15] text-white/70 hover:text-white hover:bg-white/[0.1] transition-all text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-[#030303] ${className}`}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.15] text-white/70 hover:text-white hover:bg-white/[0.1] transition-all text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-ink ${className}`}
             aria-label={copied ? "Email copied!" : `Copy ${email} to clipboard`}
         >
             {copied ? (

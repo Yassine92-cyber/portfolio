@@ -48,7 +48,7 @@ export function StoreSection() {
                                 Coming Soon
                             </p>
                             <p className="text-white/60 text-lg leading-relaxed">
-                                We're working on something special. Check back soon!
+                                We&apos;re working on something special. Check back soon!
                             </p>
                         </div>
                     </motion.div>

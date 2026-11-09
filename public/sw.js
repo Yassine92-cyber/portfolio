@@ -1,49 +1,17 @@
-const CACHE_NAME = 'portfolio-cache-v1';
-const urlsToCache = [
-  '/',
-  '/blog',
-  '/portfolio',
-  '/publications',
-  '/my-journey',
-  '/store',
-  '/offline'
-];
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(urlsToCache);
-      })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
+// Retired service worker. The site has no offline mode; this file stays at /sw.js only so any
+// browser still holding the earlier cache-first worker replaces it, clears its cache and unregisters.
+self.addEventListener('install', () => {
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    (async () => {
+      const keys = await caches.keys();
+      await Promise.all(keys.filter((key) => key.startsWith('portfolio-cache')).map((key) => caches.delete(key)));
+      await self.registration.unregister();
+      const windows = await self.clients.matchAll({ type: 'window' });
+      windows.forEach((client) => client.navigate(client.url));
+    })()
   );
 });
-

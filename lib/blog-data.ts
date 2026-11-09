@@ -6,7 +6,7 @@ export interface BlogPost {
     date: string;
     category: string;
     link: string;
-    thumbnail: string;
+    thumbnail?: string | null;
     content?: string;
 }
 
@@ -28,7 +28,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-12-01",
         category: "Language Learning",
         link: "https://www.linkedin.com/feed/update/urn:li:activity:7363829978519547905/",
-        thumbnail: "/images/blog-thumbnails/finnish-learning.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about learning Finnish. The full content is available on LinkedIn.",
     },
     {
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-10-25",
         category: "Professional Development",
         link: "https://www.linkedin.com/feed/update/urn:li:activity:7373649192499630080/",
-        thumbnail: "/images/blog-thumbnails/linkedin-platform.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about LinkedIn as a platform. The full content is available on LinkedIn.",
     },
     {
@@ -68,7 +68,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-10-20",
         category: "Integration & Career",
         link: "https://www.linkedin.com/feed/update/urn:li:activity:7391769210210729984/",
-        thumbnail: "/images/blog-thumbnails/finnish-integration.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about Finnish integration. The full content is available on LinkedIn.",
     },
     {
@@ -118,7 +118,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-08-20",
         category: "Research",
         link: "https://lnkd.in/ds2x6yqE",
-        thumbnail: "/images/blog-thumbnails/research-tools.jpg",
+        thumbnail: "/images/blog-thumbnails/researcher-tools.jpg",
         content: "This is a LinkedIn post about research tools. The full content is available on LinkedIn.",
     },
     {
@@ -128,7 +128,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-08-15",
         category: "Entrepreneurship",
         link: "https://lnkd.in/dTSCnKvQ",
-        thumbnail: "/images/blog-thumbnails/startup-programs.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about startup programs. The full content is available on LinkedIn.",
     },
     {
@@ -168,7 +168,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-07-20",
         category: "Career Development",
         link: "https://lnkd.in/dE74Q2Rc",
-        thumbnail: "/images/blog-thumbnails/job-portals.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about job portals. The full content is available on LinkedIn.",
     },
     {
@@ -178,7 +178,7 @@ export const blogPosts: BlogPost[] = [
         date: "2024-07-15",
         category: "Career Development",
         link: "https://lnkd.in/de7C9fzm",
-        thumbnail: "/images/blog-thumbnails/hidden-job-market.jpg",
+        thumbnail: null,
         content: "This is a LinkedIn post about the hidden job market. The full content is available on LinkedIn.",
     },
 ];

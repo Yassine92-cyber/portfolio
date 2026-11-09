@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { 
-    Sparkles, Calendar, ChevronRight, ChevronDown, Star, Award, Briefcase, 
-    GraduationCap, Zap, BookOpen, Users, ArrowRight, ArrowLeft, 
-    Lightbulb, Heart, Globe, MessageCircle, MapPin
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+    ChevronDown, Star, Award, Briefcase, GraduationCap, BookOpen, Users,
+    Lightbulb, Globe, MessageCircle, MapPin
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { PageHeader } from "@/components/ui/page-header";
+import { ButtonLink } from "@/components/ui/button-link";
+import { orinavis } from "@/lib/portfolio-data";
 
 // --- Data: Source of Truth ---
 
@@ -25,7 +26,7 @@ const milestones = [
         details: [
             "Completed peer-support trainings with MIELI, ADHD-liitto & Finnish Refugee Council, plus advanced trainings on the Finnish Legal system and social skills.",
             "Invited speaker at Course Connect (Haaga-Helia) and Familia ry; regular guest at Career Club (City of Espoo).",
-            "Built 3 GitHub chemistry projects and two custom GPTs: VentureLens and PromptCraft.",
+            "Built 3 GitHub chemistry projects and custom GPTs including VentureLens and PromptCraft.",
             "Designed and deployed a portfolio website using vibe-coded Cursor workflows.",
             "Actively supporting jobseekers and idea-builders on LinkedIn.",
             "Completed 10+ projects using Cursor for job search clarity while upskilling in AI and automation.",
@@ -131,7 +132,7 @@ const milestones = [
         coreIdentity: "Entrepreneur & Operator",
         details: [
             "Launched operations end-to-end, achieving +60% revenue in 6 months.",
-            "Delivered Hope Makers program to 92 students, converting to 152 paid enrollments.",
+            "Delivered Hope Makers program to 92 students.",
             "Managed marketing, partner communications, and event logistics."
         ]
     },
@@ -165,278 +166,7 @@ const milestones = [
     }
 ];
 
-// --- Main Component ---
-
-export function MyJourneyPageContent() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-    // Progress Bar Animation
-    const { scrollXProgress } = useScroll({
-        container: scrollContainerRef,
-    });
-    
-    const scaleX = useSpring(scrollXProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
-    const scrollToMilestone = (index: number) => {
-        setActiveIndex(index);
-        const container = scrollContainerRef.current;
-        if (container) {
-            const cardWidth = container.offsetWidth < 768 ? container.offsetWidth - 32 : 600; 
-            const gap = 32; // md:gap-8 is 32px
-            const targetScroll = index * (cardWidth + gap);
-            container.scrollTo({
-                left: targetScroll,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    // Sync active index with scroll
-    useEffect(() => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
-
-        const handleScroll = () => {
-            const scrollLeft = container.scrollLeft;
-            const width = container.offsetWidth < 768 ? container.offsetWidth - 32 : 600;
-            const gap = 32;
-            const index = Math.round(scrollLeft / (width + gap));
-            if (index >= 0 && index < milestones.length) {
-                // setActiveIndex(index); 
-            }
-        };
-
-        container.addEventListener("scroll", handleScroll);
-        return () => container.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    return (
-        <section className="relative py-12 md:py-16 pt-32 md:pt-40 min-h-screen bg-[#030303] overflow-hidden flex flex-col">
-            {/* Background Atmosphere */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-[100px]" />
-            </div>
-
-            <div className="container mx-auto px-4 md:px-6 relative z-10 flex-shrink-0 mb-8">
-                <Breadcrumbs items={[{ label: "My Journey" }]} />
-                <div className="text-center max-w-4xl mx-auto mt-8">
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-rose-300">
-                            My Journey
-                        </span>
-                    </h1>
-                    <p className="text-white/60 text-lg md:text-xl leading-relaxed">
-                        From scientific researcher to ecosystem bridge builder. 
-                        <br className="hidden md:block"/>
-                        A path defined by curiosity, resilience, and connecting dots.
-                    </p>
-                </div>
-            </div>
-
-            {/* 1. Horizontal Timeline Rail (Desktop) */}
-            <div className="container mx-auto px-4 md:px-6 mb-8 hidden md:block">
-                <div className="relative pt-8 pb-4">
-                    {/* Rail Line */}
-                    <div className="absolute top-[calc(2rem+8px)] left-0 right-0 h-0.5 bg-white/10" />
-                    <motion.div 
-                        className="absolute top-[calc(2rem+8px)] left-0 h-0.5 bg-gradient-to-r from-indigo-500 to-rose-500 origin-left"
-                        style={{ scaleX }}
-                    />
-                    
-                    {/* Interactive Nodes */}
-                    <div className="relative flex justify-between px-2">
-                        {milestones.map((item, index) => (
-                            <button
-                                key={index}
-                                onClick={() => scrollToMilestone(index)}
-                                className={cn(
-                                    "relative group focus:outline-none transition-all duration-300 flex flex-col items-center gap-3",
-                                    activeIndex === index ? "z-10" : "z-0"
-                                )}
-                            >
-                                <div className={cn(
-                                    "w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 bg-[#030303]",
-                                    activeIndex === index 
-                                        ? "border-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)] scale-125" 
-                                        : "border-white/30 group-hover:border-white/60"
-                                )} />
-                                <span className={cn(
-                                    "text-xs font-medium whitespace-nowrap transition-colors duration-300 font-mono",
-                                    activeIndex === index ? "text-indigo-300" : "text-white/30 group-hover:text-white/60"
-                                )}>
-                                    {item.period.split('–')[0].split('-')[0].trim()}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* 2. Horizontal Cards (The Journey) */}
-            <div className="relative flex-1 flex flex-col justify-center w-full min-h-[550px]">
-                <div 
-                    ref={scrollContainerRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar px-4 md:px-[calc(50vw-300px)] gap-6 md:gap-8 py-4 items-start h-full"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
-                    {milestones.map((item, index) => {
-                        const Icon = item.icon;
-                        const isActive = activeIndex === index;
-
-                        return (
-                            <div 
-                                key={index} 
-                                className="snap-center flex-shrink-0 w-full md:w-[600px] perspective-1000"
-                                onClick={() => setActiveIndex(index)}
-                            >
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5 }}
-                                    className={cn(
-                                        "h-full min-h-[500px] rounded-3xl border transition-all duration-500 overflow-hidden relative group bg-[#0a0a0a]/80 backdrop-blur-xl flex flex-col",
-                                        isActive
-                                            ? "border-indigo-500/50 shadow-[0_0_50px_rgba(99,102,241,0.15)] opacity-100" 
-                                            : "border-white/10 opacity-50 scale-95 hover:opacity-70 hover:scale-[0.97]"
-                                    )}
-                                >
-                                    {/* Card Gradient */}
-                                    <div className={cn(
-                                        "absolute inset-0 bg-gradient-to-br opacity-[0.08]",
-                                        item.color
-                                    )} />
-
-                                    {/* Content Container */}
-                                    <div className="relative p-6 md:p-8 flex flex-col h-full">
-                                        {/* Header */}
-                                        <div className="flex items-start gap-5 mb-6">
-                                            <div className={cn(
-                                                "w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br shadow-lg flex-shrink-0 text-white",
-                                                item.color
-                                            )}>
-                                                <Icon className="w-7 h-7" />
-                                            </div>
-                                            <div>
-                                                <div className="flex flex-wrap items-center gap-2 mb-2">
-                                                    <span className="text-xs font-bold tracking-wider uppercase text-white/60 bg-white/10 px-2 py-1 rounded">
-                                                        {item.period}
-                                                    </span>
-                                                    <span className="text-xs text-white/40 flex items-center gap-1">
-                                                        <MapPin className="w-3 h-3" />
-                                                        {item.location}
-                                                    </span>
-                                                </div>
-                                                <h2 className="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">
-                                                    {item.title}
-                                                </h2>
-                                                <p className="text-indigo-300 font-medium text-sm">
-                                                    {item.roleType}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Core Identity Badge */}
-                                        <div className="mb-6">
-                                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/10">
-                                                <Zap className="w-3.5 h-3.5 text-indigo-400" />
-                                                <span className="text-sm text-indigo-200 font-medium">
-                                                    Identity: {item.coreIdentity}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Summary (if exists) */}
-                                        {item.summary && (
-                                            <p className="text-white/80 text-sm mb-5 italic border-l-2 border-indigo-500/50 pl-4 py-1">
-                                                {item.summary}
-                                            </p>
-                                        )}
-
-                                        {/* Bullet Points */}
-                                        <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-3">
-                                            {item.details.map((detail, i) => (
-                                                <div key={i} className="flex items-start gap-3 group/item">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2 flex-shrink-0 group-hover/item:scale-125 transition-transform" />
-                                                    <p className="text-sm text-white/70 leading-relaxed group-hover/item:text-white/90 transition-colors">
-                                                        {detail}
-                                                    </p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* 3. Supporting Sections Grid */}
-            <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 max-w-6xl">
-                
-                {/* 3a. Education & Teaching */}
-                <div className="grid md:grid-cols-2 gap-12 mb-24">
-                    <SupportingSection title="Education" icon={GraduationCap}>
-                        <div className="space-y-4">
-                            <Card title="Ph.D. in Organic, Medicinal & Computational Chemistry" subtitle="Mohammed I University" date="2016 – 2020">
-                                <p className="text-sm text-white/60 mt-2">Thesis: Synthesis, biological evaluation, and in silico modeling of N-Alkylated heterocyclic compounds as multi-target drug candidates.</p>
-                            </Card>
-                            <Card title="M.Sc. in Chemistry" subtitle="Chouaib Doukkali University" date="2014 – 2016" />
-                            <Card title="B.Sc. in Organic Chemistry" subtitle="Mohammed I University" date="2010 – 2014" />
-                        </div>
-                    </SupportingSection>
-
-                    <SupportingSection title="Teaching & Instruction" icon={BookOpen}>
-                        <div className="space-y-4">
-                            <Card title="Teaching Assistant" subtitle="Mohammed I University" date="2018 – 2020">
-                                <p className="text-sm text-white/60 mt-2">Led practical General Chemistry courses for bachelor's students.</p>
-                            </Card>
-                            <Card title="MSc/PhD Instructor" subtitle="Mohammed I University" date="2016 – 2020">
-                                <p className="text-sm text-white/60 mt-2">Trained 4 Master’s students and onboarded numerous PhD candidates.</p>
-                            </Card>
-                            <Card title="MOOC Instructor" subtitle="Mohammed First University" date="2017 – 2018">
-                                <p className="text-sm text-white/60 mt-2">Developed an online course: “Major classes of organic reactions”.</p>
-                            </Card>
-                        </div>
-                    </SupportingSection>
-                </div>
-
-                {/* 3b. Skills (Visual Chips) */}
-                <div className="mb-24">
-                    <SupportingSection title="Skills & Competencies" icon={Zap}>
-                        <div className="grid gap-8 md:grid-cols-2">
-                            <SkillGroup category="Scientific & Technical" skills={[
-                                "Organic/Synthetic Chemistry", "Computational Chemistry", "Corrosion Science", 
-                                "Bioinformatics", "Molecular Modeling", "DFT", "Data Analysis"
-                            ]} />
-                            <SkillGroup category="Business & Commercialization" skills={[
-                                "Market Research", "Competitive Analysis", "Business Model Design", 
-                                "GTM Strategy", "User Validation", "Fundraising Pipeline", "IP Awareness"
-                            ]} />
-                            <SkillGroup category="Startup Methods" skills={[
-                                "Lean Startup", "Value Proposition Canvas", "ICP Definition", 
-                                "Pitch Decks", "TAM/SAM/SOM", "Pricing Models"
-                            ]} />
-                            <SkillGroup category="Tools & Tech" skills={[
-                                "HubSpot", "LinkedIn", "Notion", "Miro", "Webflow", "Google Analytics", 
-                                "Cursor", "ChatGPT", "Python (Basics)", "Azure"
-                            ]} />
-                        </div>
-                    </SupportingSection>
-                </div>
-
-                {/* 3c. Dense Lists (Accordions) */}
-                <div className="grid gap-12 mb-24">
-                    <SupportingSection title="Certifications" icon={Award}>
-                        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                            {[
+const certifications = [
                                 { y: "2026", t: "Adv. Peer Support: Legal System", o: "Finnish Refugee Council" },
                                 { y: "2025", t: "Peer Support Facilitation", o: "ADHD-Liitto" },
                                 { y: "2025", t: "Promoting Antiracism", o: "MIELI ry" },
@@ -446,19 +176,9 @@ export function MyJourneyPageContent() {
                                 { y: "2024", t: "McKinsey Forward Program", o: "McKinsey & Company" },
                                 { y: "2024", t: "Design Thinking Practitioner", o: "IBM" },
                                 { y: "2022", t: "Azure Fundamentals (AZ-900)", o: "Microsoft" },
-                            ].map((c, i) => (
-                                <div key={i} className="flex flex-col p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.06] transition-colors">
-                                    <span className="text-xs font-mono text-indigo-400 mb-1">{c.y}</span>
-                                    <span className="font-medium text-white text-sm leading-tight mb-1">{c.t}</span>
-                                    <span className="text-xs text-white/40">{c.o}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </SupportingSection>
+];
 
-                    <SupportingSection title="Volunteering Experience" icon={Heart}>
-                        <div className="space-y-2">
-                            {[
+const volunteering = [
                                 { role: "Speaker at Course Connect", org: "Haaga Helia", date: "09.2025" },
                                 { role: "Audio/visual Team", org: "Maria 01 Now Pitching", date: "06.2025" },
                                 { role: "Mentor", org: "Think Africa ry", date: "2024 – 2025" },
@@ -470,43 +190,9 @@ export function MyJourneyPageContent() {
                                 { role: "Matchmaker", org: "Arctic15", date: "2023" },
                                 { role: "Committee Member", org: "ICMES2020", date: "2020" },
                                 { role: "Project Manager", org: "AIESEC", date: "2017 – 2018" },
-                            ].map((vol, i) => (
-                                <div key={i} className="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-white/[0.03] border-b border-white/[0.05] last:border-0 transition-colors group">
-                                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                                        <span className="text-white font-medium text-sm">{vol.role}</span>
-                                        <span className="hidden sm:block text-white/20">•</span>
-                                        <span className="text-white/50 text-sm">{vol.org}</span>
-                                    </div>
-                                    <span className="text-xs font-mono text-white/30 group-hover:text-indigo-300 transition-colors">{vol.date}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </SupportingSection>
-                </div>
+];
 
-                {/* 3d. Other (Awards, Courses, Languages) */}
-                <div className="grid gap-8 md:grid-cols-2">
-                    <SupportingSection title="Awards" icon={Star}>
-                        <Card title="1st Prize – Innovation" subtitle="Innovation City, Fez" date="2019">
-                            <p className="text-sm text-white/70 mt-2">National Prize: Incubator acceptance + €1,000 (medical image watermarking).</p>
-                        </Card>
-                    </SupportingSection>
-
-                    <SupportingSection title="Languages" icon={Globe}>
-                        <div className="space-y-3">
-                            <LanguageRow lang="English" level="Professional fluency" desc="Research, business, pitching" />
-                            <LanguageRow lang="French" level="Professional fluency" desc="Business, academic contexts" />
-                            <LanguageRow lang="Finnish" level="A2-B1" desc="Beginner speaking, good understanding" />
-                            <LanguageRow lang="Arabic" level="Native" desc="Professional outreach, MENA markets" />
-                        </div>
-                    </SupportingSection>
-                </div>
-
-                {/* Other Courses Accordion */}
-                <div className="mt-12">
-                    <ExpandableSection title="Other Courses" icon={BookOpen} count={11}>
-                        <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
-                            {[
+const otherCourses = [
                                 "Training in Education Pedagogy (2021–2022)",
                                 "E-learning and Digital Pedagogy (2017–2018)",
                                 "Hands-on NMR Analysis (500MHz) (2017)",
@@ -518,44 +204,287 @@ export function MyJourneyPageContent() {
                                 "Hypnotherapy Practitioner (2013)",
                                 "Trainer in Academic Excellence (2013)",
                                 "Personal Strategic Planning Trainer (2012)"
-                            ].map((c, i) => (
-                                <li key={i} className="text-sm text-white/60 py-2 border-b border-white/[0.05] last:border-0">
-                                    {c}
+];
+
+const firstYear = (period: string) => period.match(/\d{4}/)?.[0] ?? period;
+
+// --- Main Component ---
+
+export function MyJourneyPageContent() {
+    const [activeId, setActiveId] = useState(milestones[0].id);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible[0]) setActiveId(visible[0].target.id);
+            },
+            { rootMargin: "-30% 0px -55% 0px" }
+        );
+        milestones.forEach((item) => {
+            const element = document.getElementById(item.id);
+            if (element) observer.observe(element);
+        });
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <div className="page-shell pb-24 pt-28 md:pb-32 md:pt-36">
+            <PageHeader
+                crumb="About"
+                eyebrow="About · My journey"
+                title={
+                    <>
+                        From the lab bench <em className="font-display italic text-warm-300">to the founder&apos;s desk.</em>
+                    </>
+                }
+                intro="From scientific researcher to ecosystem bridge builder, and now founder. A path defined by curiosity, resilience, and connecting dots."
+            />
+
+            <section aria-labelledby="now-title" className="py-14 md:py-20">
+                <div className="grid gap-8 rounded-[2rem] border border-line bg-surface p-7 sm:p-10 md:grid-cols-12 md:items-center md:p-12">
+                    <div className="md:col-span-8">
+                        <p className="eyebrow flex items-center gap-3 text-warm-300">
+                            <span className="h-2 w-2 rounded-full bg-warm-400" aria-hidden="true" />
+                            Now
+                        </p>
+                        <h2 id="now-title" className="mt-4 text-display-md text-paper">
+                            {orinavis.role}, {orinavis.name}
+                        </h2>
+                        <p className="mt-4 max-w-2xl text-lede text-paper/75">
+                            {orinavis.tagline}. Everything below, from coordinating labs to building pipelines and
+                            communities, is what I bring to it.
+                        </p>
+                    </div>
+                    <div className="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
+                        <ButtonLink href={orinavis.url}>Explore Orinavis</ButtonLink>
+                        <ButtonLink href="/#orinavis" variant="secondary">
+                            Why I founded it
+                        </ButtonLink>
+                    </div>
+                </div>
+            </section>
+
+            <section aria-labelledby="timeline-title" className="border-t border-line pt-14 md:pt-20">
+                <div className="grid gap-12 lg:grid-cols-12">
+                    <div className="lg:col-span-4">
+                        <div className="lg:sticky lg:top-28">
+                            <p className="eyebrow mb-4 flex items-center gap-3">
+                                <span className="h-px w-8 bg-violet-400" aria-hidden="true" />
+                                Timeline
+                            </p>
+                            <h2 id="timeline-title" className="text-display-md text-paper">
+                                Experience
+                            </h2>
+                            <nav aria-label="Jump to a role" className="mt-8 hidden lg:block">
+                                <ol className="border-l border-line">
+                                    {milestones.map((item) => {
+                                        const active = activeId === item.id;
+                                        return (
+                                            <li key={item.id}>
+                                                <a
+                                                    href={`#${item.id}`}
+                                                    aria-current={active ? "location" : undefined}
+                                                    className={cn(
+                                                        "-ml-px flex gap-4 border-l py-2 pl-5 text-sm transition-colors",
+                                                        active
+                                                            ? "border-violet-400 text-paper"
+                                                            : "border-transparent text-paper/60 hover:text-paper"
+                                                    )}
+                                                >
+                                                    <span className="w-10 shrink-0 font-mono text-xs leading-5">{firstYear(item.period)}</span>
+                                                    <span className="leading-5">
+                                                        {item.roleType === "Career Break" ? item.title.split(":")[0].trim() : item.roleType}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        );
+                                    })}
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <ol className="lg:col-span-8">
+                        {milestones.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <li
+                                    key={item.id}
+                                    id={item.id}
+                                    className="scroll-mt-28 border-b border-line py-10 first:pt-0 last:border-0"
+                                >
+                                    <motion.article
+                                        data-reveal=""
+                                        initial={{ opacity: 0, y: 16 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+                                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                    >
+                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-paper/65">
+                                            <span className="text-paper/90">{item.period}</span>
+                                            <span className="inline-flex items-center gap-1.5">
+                                                <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                                                {item.location}
+                                            </span>
+                                        </div>
+                                        <div className="mt-5 flex items-start gap-4">
+                                            <span className="mt-1 hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-violet-300 sm:flex">
+                                                <Icon className="h-[1.125rem] w-[1.125rem]" aria-hidden="true" />
+                                            </span>
+                                            <div className="min-w-0">
+                                                <h3 className="font-display text-display-sm text-paper">{item.title}</h3>
+                                                <p className="mt-1 text-[0.9375rem] text-violet-200">{item.roleType}</p>
+                                                <p className="eyebrow mt-4 text-paper/60">{item.coreIdentity}</p>
+                                            </div>
+                                        </div>
+                                        {item.summary && (
+                                            <p className="mt-6 border-l-2 border-warm-400/60 pl-4 italic text-paper/80 sm:ml-14">
+                                                {item.summary}
+                                            </p>
+                                        )}
+                                        <ul className="mt-6 space-y-3 sm:ml-14">
+                                            {item.details.map((detail) => (
+                                                <li key={detail} className="flex gap-3 leading-relaxed text-paper/75">
+                                                    <span className="mt-[0.7em] h-px w-3 shrink-0 bg-violet-400" aria-hidden="true" />
+                                                    {detail}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </motion.article>
                                 </li>
-                            ))}
-                        </ul>
-                    </ExpandableSection>
+                            );
+                        })}
+                    </ol>
+                </div>
+            </section>
+
+            <div className="mt-20 grid gap-16 border-t border-line pt-16 md:mt-24 md:pt-24">
+                <div className="grid gap-16 md:grid-cols-2 md:gap-12">
+                    <SupportingSection title="Education">
+                        <div className="divide-y divide-line">
+                            <Card title="Ph.D. in Organic, Medicinal & Computational Chemistry" subtitle="Mohammed I University" date="2016 – 2020">
+                                <p className="mt-2 text-sm leading-relaxed text-paper/70">Thesis: Synthesis, biological evaluation, and in silico modeling of N-Alkylated heterocyclic compounds as multi-target drug candidates.</p>
+                            </Card>
+                            <Card title="M.Sc. in Chemistry" subtitle="Chouaib Doukkali University" date="2014 – 2016" />
+                            <Card title="B.Sc. in Organic Chemistry" subtitle="Mohammed I University" date="2010 – 2014" />
+                        </div>
+                    </SupportingSection>
+
+                    <SupportingSection title="Teaching & Instruction">
+                        <div className="divide-y divide-line">
+                            <Card title="Teaching Assistant" subtitle="Mohammed I University" date="2018 – 2020">
+                                <p className="mt-2 text-sm leading-relaxed text-paper/70">Led practical General Chemistry courses for bachelor&apos;s students.</p>
+                            </Card>
+                            <Card title="MSc/PhD Instructor" subtitle="Mohammed I University" date="2016 – 2020">
+                                <p className="mt-2 text-sm leading-relaxed text-paper/70">Trained 4 Master’s students and onboarded numerous PhD candidates.</p>
+                            </Card>
+                            <Card title="MOOC Instructor" subtitle="Mohammed First University" date="2017 – 2018">
+                                <p className="mt-2 text-sm leading-relaxed text-paper/70">Developed an online course: “Major classes of organic reactions”.</p>
+                            </Card>
+                        </div>
+                    </SupportingSection>
                 </div>
 
+                <SupportingSection title="Skills & Competencies">
+                    <div className="grid gap-10 md:grid-cols-2">
+                        <SkillGroup category="Scientific & Technical" skills={[
+                            "Organic/Synthetic Chemistry", "Computational Chemistry", "Corrosion Science",
+                            "Bioinformatics", "Molecular Modeling", "DFT", "Data Analysis"
+                        ]} />
+                        <SkillGroup category="Business & Commercialization" skills={[
+                            "Market Research", "Competitive Analysis", "Business Model Design",
+                            "GTM Strategy", "User Validation", "Fundraising Pipeline", "IP Awareness"
+                        ]} />
+                        <SkillGroup category="Startup Methods" skills={[
+                            "Lean Startup", "Value Proposition Canvas", "ICP Definition",
+                            "Pitch Decks", "TAM/SAM/SOM", "Pricing Models"
+                        ]} />
+                        <SkillGroup category="Tools & Tech" skills={[
+                            "HubSpot", "LinkedIn", "Notion", "Miro", "Webflow", "Google Analytics",
+                            "Cursor", "ChatGPT", "Python (Basics)", "Azure"
+                        ]} />
+                    </div>
+                </SupportingSection>
+
+                <SupportingSection title="Certifications">
+                    <ul className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+                        {certifications.map((c) => (
+                            <li key={c.t} className="flex flex-col bg-ink p-5">
+                                <span className="font-mono text-xs text-violet-300">{c.y}</span>
+                                <span className="mt-2 font-medium leading-snug text-paper">{c.t}</span>
+                                <span className="mt-1 text-sm text-paper/65">{c.o}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </SupportingSection>
+
+                <SupportingSection title="Volunteering Experience">
+                    <ul className="border-t border-line">
+                        {volunteering.map((vol) => (
+                            <li key={`${vol.role}-${vol.org}`} className="flex items-baseline justify-between gap-6 border-b border-line py-4">
+                                <span className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
+                                    <span className="font-medium text-paper">{vol.role}</span>
+                                    <span className="text-[0.9375rem] text-paper/65">{vol.org}</span>
+                                </span>
+                                <span className="shrink-0 font-mono text-xs text-paper/60">{vol.date}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </SupportingSection>
+
+                <div className="grid gap-16 md:grid-cols-2 md:gap-12">
+                    <SupportingSection title="Awards">
+                        <Card title="1st Prize – Innovation" subtitle="Innovation City, Fez" date="2019">
+                            <p className="mt-2 text-sm leading-relaxed text-paper/70">National Prize: Incubator acceptance + €1,000 (medical image watermarking).</p>
+                        </Card>
+                    </SupportingSection>
+
+                    <SupportingSection title="Languages">
+                        <dl className="divide-y divide-line">
+                            <LanguageRow lang="English" level="Professional fluency" desc="Research, business, pitching" />
+                            <LanguageRow lang="French" level="Professional fluency" desc="Business, academic contexts" />
+                            <LanguageRow lang="Finnish" level="A2-B1" desc="Beginner speaking, good understanding" />
+                            <LanguageRow lang="Arabic" level="Native" desc="Professional outreach, MENA markets" />
+                        </dl>
+                    </SupportingSection>
+                </div>
+
+                <ExpandableSection title="Other Courses" count={otherCourses.length}>
+                    <ul className="grid gap-x-10 md:grid-cols-2">
+                        {otherCourses.map((c) => (
+                            <li key={c} className="border-b border-line py-3 text-[0.9375rem] text-paper/75">
+                                {c}
+                            </li>
+                        ))}
+                    </ul>
+                </ExpandableSection>
             </div>
-        </section>
+        </div>
     );
 }
 
 // --- Subcomponents ---
 
-function SupportingSection({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) {
+function SupportingSection({ title, children }: { title: string, children: React.ReactNode }) {
     return (
-        <div className="flex flex-col h-full">
-            <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-white/5 text-indigo-400">
-                    <Icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-xl font-bold text-white tracking-tight">{title}</h3>
-            </div>
+        <section className="flex h-full flex-col">
+            <h2 className="mb-6 font-display text-display-sm text-paper">{title}</h2>
             <div className="flex-1">{children}</div>
-        </div>
+        </section>
     );
 }
 
 function Card({ title, subtitle, date, children }: { title: string, subtitle?: string, date: string, children?: React.ReactNode }) {
     return (
-        <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:border-indigo-500/30 transition-colors group">
-            <div className="flex justify-between items-start mb-1">
-                <h4 className="font-semibold text-white text-base group-hover:text-indigo-200 transition-colors">{title}</h4>
-                <span className="text-xs font-mono text-white/30 whitespace-nowrap ml-4">{date}</span>
+        <div className="py-5 first:pt-0">
+            <div className="flex items-start justify-between gap-4">
+                <h3 className="font-medium text-paper">{title}</h3>
+                <span className="whitespace-nowrap font-mono text-xs text-paper/60">{date}</span>
             </div>
-            {subtitle && <p className="text-sm text-indigo-400/80 mb-1">{subtitle}</p>}
+            {subtitle && <p className="mt-1 text-sm text-violet-200">{subtitle}</p>}
             {children}
         </div>
     );
@@ -564,62 +493,64 @@ function Card({ title, subtitle, date, children }: { title: string, subtitle?: s
 function SkillGroup({ category, skills }: { category: string, skills: string[] }) {
     return (
         <div>
-            <h4 className="text-sm font-medium text-white/50 uppercase tracking-wider mb-3">{category}</h4>
-            <div className="flex flex-wrap gap-2">
-                {skills.map((skill, i) => (
-                    <span key={i} className="px-3 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.05] text-sm text-white/80 hover:bg-white/[0.1] hover:text-white transition-colors cursor-default">
+            <h3 className="eyebrow mb-4 text-paper/65">{category}</h3>
+            <ul className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                    <li key={skill} className="rounded-full border border-paper/15 px-3.5 py-1.5 text-sm text-paper/85">
                         {skill}
-                    </span>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 }
 
 function LanguageRow({ lang, level, desc }: { lang: string, level: string, desc: string }) {
     return (
-        <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-            <div className="flex flex-col">
-                <span className="font-semibold text-white text-sm">{lang}</span>
-                <span className="text-xs text-white/40">{desc}</span>
+        <div className="flex items-center justify-between gap-4 py-4 first:pt-0">
+            <div>
+                <dt className="font-medium text-paper">{lang}</dt>
+                <dd className="text-sm text-paper/65">{desc}</dd>
             </div>
-            <span className="px-2 py-1 rounded bg-indigo-500/10 text-indigo-300 text-xs font-medium">
-                {level}
-            </span>
+            <dd className="rounded-full bg-violet-400/10 px-3 py-1 text-xs text-violet-200">{level}</dd>
         </div>
     );
 }
 
-function ExpandableSection({ title, icon: Icon, children, count }: { title: string, icon: any, children: React.ReactNode, count?: number }) {
+function ExpandableSection({ title, children, count }: { title: string, children: React.ReactNode, count?: number }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
-            <button 
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-6 hover:bg-white/[0.02] transition-colors"
-            >
-                <div className="flex items-center gap-3">
-                    <Icon className="w-5 h-5 text-indigo-400" />
-                    <h3 className="text-xl font-bold text-white">{title}</h3>
-                    {count && <span className="px-2 py-0.5 rounded-full bg-white/10 text-xs text-white/60">{count}</span>}
-                </div>
-                <ChevronDown className={cn("w-5 h-5 text-white/40 transition-transform", isOpen && "rotate-180")} />
-            </button>
-            <AnimatePresence>
+        <section className="overflow-hidden rounded-3xl border border-line">
+            <h2>
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-expanded={isOpen}
+                    aria-controls="other-courses-panel"
+                    className="flex w-full items-center justify-between gap-4 p-6 text-left transition-colors hover:bg-paper/[0.02] md:p-8"
+                >
+                    <span className="flex items-center gap-3">
+                        <span className="font-display text-display-sm text-paper">{title}</span>
+                        {count && <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-xs text-paper/70">{count}</span>}
+                    </span>
+                    <ChevronDown className={cn("h-5 w-5 text-paper/60 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
+                </button>
+            </h2>
+            <AnimatePresence initial={false}>
                 {isOpen && (
                     <motion.div
+                        id="other-courses-panel"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <div className="p-6 pt-0 border-t border-white/5">
+                        <div className="border-t border-line px-6 pb-6 md:px-8 md:pb-8">
                             {children}
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </section>
     );
 }

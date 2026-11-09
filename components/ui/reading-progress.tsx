@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion, useSpring, useScroll } from "framer-motion";
 
 export function ReadingProgress() {

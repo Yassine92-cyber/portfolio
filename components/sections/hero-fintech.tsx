@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Terminal, Linkedin, MapPin, Globe } from "lucide-react";
+import { ArrowRight, Terminal, Linkedin, MapPin, Globe } from "lucide-react";
 import Link from "next/link";
 import { HeroAvatar } from "@/components/ui/hero-avatar";
 import { AnimatedIdentityTitle } from "@/components/ui/animated-identity-title";
