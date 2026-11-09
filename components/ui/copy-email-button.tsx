@@ -44,3 +44,4 @@ export function CopyEmailButton({ email, className = "" }: CopyEmailButtonProps)
         </motion.button>
     );
 }
+
