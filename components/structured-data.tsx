@@ -1,3 +1,5 @@
+import { links, siteDescription, siteUrl } from "@/lib/site";
+
 export function StructuredData({ data }: { data: object }) {
   return (
     <script
@@ -12,15 +14,16 @@ export function PersonSchema() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Yassine Kaddouri",
-    jobTitle: "Bridge Builder & Peer Supporter",
-    description:
-      "Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.",
-    url: "https://yassinekaddouri.com",
-    sameAs: [
-      // Add your social media profiles here
-      // "https://linkedin.com/in/yassinekaddouri",
-      // "https://twitter.com/yassinekaddouri",
-    ],
+    honorificSuffix: "Ph.D.",
+    jobTitle: "Founder & CEO",
+    worksFor: {
+      "@type": "Organization",
+      name: "Orinavis",
+      url: links.orinavis,
+    },
+    description: siteDescription,
+    url: siteUrl,
+    sameAs: [links.linkedin],
   };
 
   return <StructuredData data={schema} />;
@@ -31,9 +34,8 @@ export function WebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Yassine Kaddouri Portfolio",
-    url: "https://yassinekaddouri.com",
-    description:
-      "Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.",
+    url: siteUrl,
+    description: siteDescription,
     publisher: {
       "@type": "Person",
       name: "Yassine Kaddouri",

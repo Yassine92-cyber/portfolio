@@ -4,8 +4,103 @@
 
 @layer base {
   :root {
-    --background: 3 3 3;
-    --foreground: 255 255 255;
+    --ink: 9 11 16;
+    --surface: 23 26 36;
+    --paper: 246 244 240;
+    --violet: 146 134 255;
+    --warm: 228 171 174;
+    --background: var(--ink);
+    --foreground: var(--paper);
+  }
+
+  html {
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink font-sans text-paper antialiased;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1,
+  h2 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(var(--violet) / 0.35);
+    color: rgb(var(--paper));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--violet));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-mono text-eyebrow uppercase text-paper/70;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Scroll reveals start hidden from SSR; show them outright instead. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -24,61 +119,51 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground));
-  background: rgb(var(--background));
-  min-height: 100vh;
-}
-
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: rgb(var(--ink));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: rgb(var(--surface));
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: #2a2f3e;
 }
 
 @media print {
   nav, button, .no-print {
     display: none !important;
   }
-  
+
   body {
     background: white !important;
     color: black !important;
   }
-  
+
   a[href]:after {
     content: " (" attr(href) ")";
     font-size: 0.8em;
   }
 
-  /* Hide decorative elements */
   .absolute {
     display: none !important;
   }
 }
 
-/* Hide scrollbar for specific elements but keep functionality */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-/* Infinite Scroll Animation */
 @keyframes scroll {
   from {
     transform: translateX(0);

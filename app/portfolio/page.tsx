@@ -1,26 +1,33 @@
 import { Navigation } from "@/components/Navigation";
 import { PortfolioPageContent } from "./portfolio-content";
 import type { Metadata } from "next";
+import { ogImage, absoluteUrl } from "@/lib/site";
+
+const description =
+  "Orinavis, the career intelligence company I founded, plus selected ventures, B2B pipelines, communities, research coordination and custom GPT experiments.";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "A showcase of my recent projects and community contributions including community engagement frameworks, program facilitation, moderation, and analytics dashboards.",
+  title: "Work",
+  description,
   alternates: {
-    canonical: "https://yassinekaddouri.com/portfolio",
+    canonical: absoluteUrl("/portfolio"),
   },
   openGraph: {
-    title: "Portfolio | Yassine Kaddouri",
-    description: "A showcase of my recent projects and community contributions including community engagement frameworks, program facilitation, moderation, and analytics dashboards.",
-    url: "https://yassinekaddouri.com/portfolio",
+    title: "Work | Yassine Kaddouri",
+    description,
+    url: absoluteUrl("/portfolio"),
     type: "website",
+    images: [ogImage],
   },
 };
 
 export default function PortfolioPage() {
   return (
-    <main className="relative min-h-screen bg-[#030303]">
+    <>
       <Navigation />
-      <PortfolioPageContent />
-    </main>
+      <main id="main-content" className="relative min-h-screen bg-ink">
+        <PortfolioPageContent />
+      </main>
+    </>
   );
 }

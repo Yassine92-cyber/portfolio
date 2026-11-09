@@ -81,6 +81,11 @@ Everything here is an experiment — iterated with curiosity, evidence, and huma
 
 If you’re working on community-led initiatives, AI-enabled operations, innovation programs, or talent ecosystems, I’d love to connect.
 
+📬 Contact
+
+The contact section has two actions and no form or backend: Connect on LinkedIn, and Email Me.
+Email Me only appears when `NEXT_PUBLIC_CONTACT_EMAIL` is set at build time to a confirmed public address.
+
 📜 License
 
 This project is open for inspiration and learning.

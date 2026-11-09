@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Calendar } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const eras = [
     {

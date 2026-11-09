@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { blogPosts } from "@/lib/blog-data";
-import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { PageHeader, StatList } from "@/components/ui/page-header";
 import toast from "react-hot-toast";
 import { BlogCard } from "@/components/sections/blog-card";
 import { BlogFilters } from "@/components/sections/blog-filters";
@@ -63,66 +63,37 @@ export default function BlogPage() {
         setCategoryFilter("all");
         setYearFilter("all");
         setSearchQuery("");
-        toast.success("All filters cleared", {
-            icon: "🧹",
-            style: {
-                background: '#333',
-                color: '#fff',
-                borderRadius: '8px',
-                border: '1px solid rgba(255,255,255,0.1)'
-            }
-        });
+        toast.success("Filters cleared");
     };
 
     return (
-        <main className="relative min-h-screen bg-[#030303]">
+        <>
             <Navigation />
-            
-            <section className="relative py-12 md:py-16 pt-32" aria-label="Blog posts">
-                {/* Background Atmosphere */}
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-rose-500/5 rounded-full blur-[120px] pointer-events-none" />
+            <main id="main-content" className="relative min-h-screen bg-ink">
+                <div className="page-shell pb-24 pt-28 md:pb-32 md:pt-36">
+                    <PageHeader
+                        crumb="Writing"
+                        eyebrow="Writing"
+                        title={
+                            <>
+                                Notes on careers, <em className="font-display italic text-warm-300">community and building.</em>
+                            </>
+                        }
+                        intro="Thoughts, insights, and stories about community building, career development, and innovation."
+                        aside={
+                            <StatList
+                                items={[
+                                    { value: filteredPosts.length, label: hasActiveFilters ? "Matching" : "Articles" },
+                                    { value: categories.length, label: "Topics" },
+                                ]}
+                            />
+                        }
+                    />
 
-                <div className="container mx-auto px-4 md:px-6 relative z-10">
-                    <div className="max-w-6xl mx-auto">
-                        <Breadcrumbs items={[{ label: "Blog" }]} />
-                        
-                        {/* Header */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="mb-12 md:mb-16"
-                        >
-                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
-                                <div>
-                                    <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-rose-300">
-                                            Blog
-                                        </span>
-                                    </h1>
-                                    <p className="text-white/60 text-lg md:text-xl max-w-2xl leading-relaxed">
-                                        Thoughts, insights, and stories about community building, career development, and innovation
-                                    </p>
-                                </div>
-                                <div className="hidden md:block text-right">
-                                    <div className="text-3xl font-bold text-white">
-                                        {filteredPosts.length}
-                                    </div>
-                                    <div className="text-sm text-white/40 uppercase tracking-wider font-medium">
-                                        Posts
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Mobile Post Count */}
-                            <div className="md:hidden flex items-center gap-2 text-white/40 text-sm mb-6">
-                                <span className="text-white font-semibold">{filteredPosts.length}</span> posts found
-                            </div>
-
-                            {/* Filters Bar */}
-                            <div className="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-2 backdrop-blur-sm">
-                                <BlogFilters 
+                    <section aria-label="Blog posts">
+                        <div className="relative z-30 mt-10 md:sticky md:top-20 md:-mx-8 md:bg-ink/90 md:px-8 md:py-3 md:backdrop-blur-xl lg:-mx-12 lg:px-12">
+                            <div className="rounded-2xl border border-line bg-ink-2 p-2">
+                                <BlogFilters
                                     categories={categories}
                                     years={years}
                                     selectedCategory={categoryFilter}
@@ -135,19 +106,18 @@ export default function BlogPage() {
                                     hasActiveFilters={hasActiveFilters}
                                 />
                             </div>
-                        </motion.div>
+                        </div>
 
-                        {/* Posts Grid */}
-                        <motion.div layout className="min-h-[400px]">
+                        <p className="sr-only" role="status" aria-live="polite">
+                            {sortedPosts.length} posts shown
+                        </p>
+
+                        <motion.div layout className="mt-8 min-h-[400px]">
                             {sortedPosts.length > 0 ? (
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                                     <AnimatePresence mode="popLayout">
                                         {sortedPosts.map((post, index) => (
-                                            <BlogCard 
-                                                key={post.slug} 
-                                                post={post} 
-                                                index={index} 
-                                            />
+                                            <BlogCard key={post.slug} post={post} index={index} />
                                         ))}
                                     </AnimatePresence>
                                 </div>
@@ -155,27 +125,27 @@ export default function BlogPage() {
                                 <motion.div
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    className="flex flex-col items-center justify-center py-20 text-center border border-dashed border-white/10 rounded-3xl bg-white/[0.01]"
+                                    className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-paper/15 px-6 py-20 text-center"
                                 >
-                                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                                        <Search className="w-8 h-8 text-white/20" />
+                                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-line">
+                                        <Search className="h-6 w-6 text-paper/50" aria-hidden="true" />
                                     </div>
-                                    <h3 className="text-xl font-semibold text-white mb-2">No posts found</h3>
-                                    <p className="text-white/50 max-w-md mx-auto mb-6">
-                                        We couldn't find any posts matching your current filters. Try adjusting your search or categories.
+                                    <h2 className="font-display text-display-sm text-paper">No posts match</h2>
+                                    <p className="mx-auto mb-7 mt-3 max-w-md text-paper/70">
+                                        Nothing matches these filters. Try a broader search or another topic.
                                     </p>
                                     <button
                                         onClick={clearFilters}
-                                        className="px-6 py-2.5 rounded-xl bg-white text-black font-medium hover:bg-white/90 transition-colors"
+                                        className="rounded-full bg-paper px-6 py-2.5 font-medium text-ink transition-colors hover:bg-violet-100"
                                     >
                                         Clear all filters
                                     </button>
                                 </motion.div>
                             )}
                         </motion.div>
-                    </div>
+                    </section>
                 </div>
-            </section>
-        </main>
+            </main>
+        </>
     );
 }

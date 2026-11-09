@@ -1,3 +1,4 @@
+import { siteUrl } from "@/lib/site";
 import { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://yassinekaddouri.com/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
   }
 }
 

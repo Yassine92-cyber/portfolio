@@ -1,10 +1,11 @@
+import { siteUrl } from "@/lib/site";
 import { MetadataRoute } from 'next'
 import { blogPosts } from '@/lib/blog-data'
 
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://yassinekaddouri.com'
+  const baseUrl = siteUrl
   
   // Static pages
   const staticPages = [
@@ -37,12 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/store`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
     },
   ]
 

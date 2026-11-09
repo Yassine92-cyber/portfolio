@@ -4,18 +4,18 @@ export const dynamic = 'force-static'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Yassine Kaddouri | Bridge Builder & Peer Supporter',
+    name: 'Yassine Kaddouri, Ph.D. | Founder & CEO of Orinavis',
     short_name: 'Yassine Kaddouri',
-    description: 'Postdoc researcher turned B2B SaaS business developer and community builder, helping people and teams go from 0→1 and turning noise into signal.',
+    description: 'Founder & CEO of Orinavis. Scientist, business developer and community builder working on clearer paths from skills to opportunity.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#030303',
-    theme_color: '#6366f1',
+    background_color: '#090B10',
+    theme_color: '#090B10',
     icons: [
       {
-        src: '/favicon.ico',
+        src: '/icon.svg',
         sizes: 'any',
-        type: 'image/x-icon',
+        type: 'image/svg+xml',
       },
       {
         src: '/icon-192.png',
@@ -30,4 +30,3 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   }
 }
-

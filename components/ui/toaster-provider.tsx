@@ -6,42 +6,42 @@ export function ToasterProvider() {
   return (
     <Toaster
       position="top-right"
+      containerStyle={{ top: 80 }}
       toastOptions={{
         duration: 4000,
         style: {
-          background: "rgba(3, 3, 3, 0.95)",
-          color: "#fff",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          borderRadius: "0.75rem",
+          background: "#171A24",
+          color: "#F6F4F0",
+          border: "1px solid rgba(246, 244, 240, 0.12)",
+          borderRadius: "0.875rem",
           padding: "12px 16px",
-          backdropFilter: "blur(10px)",
+          fontSize: "0.9375rem",
         },
         success: {
           iconTheme: {
-            primary: "#10b981",
-            secondary: "#fff",
+            primary: "#9286FF",
+            secondary: "#090B10",
           },
           style: {
-            border: "1px solid rgba(16, 185, 129, 0.3)",
+            border: "1px solid rgba(146, 134, 255, 0.35)",
           },
         },
         error: {
           iconTheme: {
-            primary: "#ef4444",
-            secondary: "#fff",
+            primary: "#E4ABAE",
+            secondary: "#090B10",
           },
           style: {
-            border: "1px solid rgba(239, 68, 68, 0.3)",
+            border: "1px solid rgba(228, 171, 174, 0.4)",
           },
         },
         loading: {
           iconTheme: {
-            primary: "#6366f1",
-            secondary: "#fff",
+            primary: "#9286FF",
+            secondary: "#171A24",
           },
         },
       }}
     />
   );
 }
-
