@@ -94,15 +94,31 @@ for (const rel of rels) {
   const exists = fs.existsSync(dest) ? fs.statSync(dest).size : 0;
   if (expected && exists === expected) continue;
 
+  const candidates = [];
+  if (preferred.has(rel)) candidates.push(pickJoined(preferred.get(rel), expected));
+  if (legacy.has(rel)) candidates.push(pickJoined(legacy.get(rel), expected));
+  if (singles.has(rel)) candidates.push(fs.readFileSync(singles.get(rel), 'utf8').replace(/\s+/g, ''));
+
   let b64 = '';
-  if (preferred.has(rel)) {
-    b64 = pickJoined(preferred.get(rel), expected);
-  } else if (legacy.has(rel)) {
-    b64 = pickJoined(legacy.get(rel), expected);
-  } else if (singles.has(rel)) {
-    b64 = fs.readFileSync(singles.get(rel), 'utf8').replace(/\s+/g, '');
+  let buf = null;
+  for (const cand of candidates) {
+    if (!cand) continue;
+    const trial = Buffer.from(cand, 'base64');
+    if (expected && trial.length !== expected) continue;
+    b64 = cand;
+    buf = trial;
+    break;
   }
-  if (!b64) continue;
+  // last resort: first non-empty candidate even if size mismatches (no expected)
+  if (!buf) {
+    for (const cand of candidates) {
+      if (!cand) continue;
+      b64 = cand;
+      buf = Buffer.from(cand, 'base64');
+      break;
+    }
+  }
+  if (!b64 || !buf) continue;
 
   // Keep a joined sidecar for debugging/cache
   const sidecar = path.join(staging, rel + '.b64');
@@ -110,7 +126,6 @@ for (const rel of rels) {
   fs.writeFileSync(sidecar, b64);
 
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  const buf = Buffer.from(b64, 'base64');
   if (expected && buf.length !== expected) {
     console.warn(`skip ${rel}: decoded ${buf.length}, expected ${expected}`);
     continue;
