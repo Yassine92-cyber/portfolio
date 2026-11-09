@@ -1,3 +1,4 @@
+import { absoluteUrl, ogImage } from "@/lib/site";
 import { Navigation } from "@/components/Navigation";
 import { blogPosts } from "@/lib/blog-data";
 import { BlogPostContent } from "@/components/blog-post-content";
@@ -22,18 +23,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const url = absoluteUrl(`/blog/${post.slug}`);
+
     return {
         title: post.title,
         description: post.excerpt,
+        alternates: {
+            canonical: url,
+        },
         openGraph: {
             title: post.title,
             description: post.excerpt,
+            url,
             type: "article",
             publishedTime: post.date,
             authors: ["Yassine Kaddouri"],
             images: [
                 {
-                    url: post.thumbnail,
+                    url: post.thumbnail ?? ogImage.url,
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -44,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             card: "summary_large_image",
             title: post.title,
             description: post.excerpt,
-            images: [post.thumbnail],
+            images: [post.thumbnail ?? ogImage.url],
         },
     };
 }
@@ -55,38 +62,33 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
     if (!post) {
         return (
-            <main className="relative min-h-screen bg-[#030303]">
+            <>
                 <Navigation />
-                <section className="relative py-12 md:py-16 pt-32">
-                    <div className="container mx-auto px-4 md:px-6">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Post Not Found</h1>
-                            <p className="text-white/60 mb-8">The blog post you're looking for doesn't exist.</p>
-                            <Link
-                                href="/blog"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-medium hover:from-indigo-600 hover:to-rose-600 transition-all"
-                                aria-label="Back to blog"
-                            >
-                                <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-                                Back to Blog
-                            </Link>
-                        </div>
+                <main id="main-content" className="relative min-h-screen bg-ink">
+                    <div className="page-shell pb-24 pt-36 text-center">
+                        <h1 className="text-display-lg text-paper">Post not found</h1>
+                        <p className="mx-auto mb-10 mt-5 max-w-md text-paper/70">The blog post you&apos;re looking for doesn&apos;t exist.</p>
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 rounded-full bg-paper px-6 py-3 font-medium text-ink transition-colors hover:bg-violet-100"
+                        >
+                            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                            Back to writing
+                        </Link>
                     </div>
-                </section>
-            </main>
+                </main>
+            </>
         );
     }
 
     return (
-        <main className="relative min-h-screen bg-[#030303]">
+        <>
             <Navigation />
-            <article className="relative py-12 md:py-16 pt-32">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="max-w-4xl mx-auto">
-                        <BlogPostContent post={post} />
-                    </div>
-                </div>
-            </article>
-        </main>
+            <main id="main-content" className="relative min-h-screen bg-ink">
+                <article className="page-shell pb-24 pt-28 md:pb-32 md:pt-36">
+                    <BlogPostContent post={post} />
+                </article>
+            </main>
+        </>
     );
 }
