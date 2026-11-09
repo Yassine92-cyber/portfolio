@@ -29,67 +29,61 @@ const EXPECTED = {
   'public/images/yassine-portrait.webp': 71548,
 };
 
-function collectBase64(relBase) {
-  const preferred = [];
-  const legacyParts = [];
-  const legacyP = [];
+function collectCandidates(relBase) {
+  const parts = [];
+  const pChunks = [];
   let single = null;
   for (const file of walk(staging)) {
     const rel = path.relative(staging, file).replace(/\\/g, '/');
-    if (rel === `${relBase}.b64`) single = file;
-    else if (rel.startsWith(`${relBase}.b64.part`)) preferred.push(file);
-    else if (rel.startsWith(`${relBase}.b64.p`)) {
-      // distinguish .pN vs .partN already handled
-      if (!path.basename(file).includes('.part')) legacyP.push(file);
-      else preferred.push(file);
+    const base = path.basename(file);
+    if (rel === `${relBase}.b64`) {
+      single = file;
+      continue;
     }
+    if (!rel.startsWith(`${relBase}.b64.`)) continue;
+    if (base.includes('.part')) parts.push(file);
+    else if (/\.b64\.p\d+$/.test(base)) pChunks.push(file);
   }
-  const sortNumeric = (files, marker) =>
+  const sortBySuffix = (files, re) =>
     files.sort((a, b) => {
-      const na = Number(path.basename(a).split(marker).pop());
-      const nb = Number(path.basename(b).split(marker).pop());
+      const na = Number((path.basename(a).match(re) || [])[1] || 0);
+      const nb = Number((path.basename(b).match(re) || [])[1] || 0);
       return na - nb;
     });
-  sortNumeric(preferred, '.part');
-  sortNumeric(legacyP, '.p');
-  sortNumeric(legacyParts, '.p');
+  sortBySuffix(parts, /\.part(\d+)$/);
+  sortBySuffix(pChunks, /\.p(\d+)$/);
 
-  const tryJoin = (files) => {
-    if (!files.length) return null;
-    return files.map((f) => fs.readFileSync(f, 'utf8').trim()).join('');
-  };
+  const joinFiles = (files) =>
+    files.length ? files.map((f) => fs.readFileSync(f, 'utf8').trim()).join('') : null;
 
   const candidates = [];
-  if (preferred.length) candidates.push(tryJoin(preferred));
-  if (legacyP.length) candidates.push(tryJoin(legacyP));
-  if (single) candidates.push(fs.readFileSync(single, 'utf8').trim());
-
-  for (const b64 of candidates) {
-    if (!b64) continue;
-    try {
-      const buf = Buffer.from(b64, 'base64');
-      return buf;
-    } catch {
-      /* try next */
-    }
-  }
-  return null;
+  // Prefer complete single file first (most reliable)
+  if (single) candidates.push({ source: 'single', b64: fs.readFileSync(single, 'utf8').trim() });
+  if (parts.length) candidates.push({ source: 'part', b64: joinFiles(parts) });
+  if (pChunks.length) candidates.push({ source: 'p', b64: joinFiles(pChunks) });
+  return candidates;
 }
 
 for (const [rel, expected] of Object.entries(EXPECTED)) {
   const dest = path.join(root, rel);
   const exists = fs.existsSync(dest) ? fs.statSync(dest).size : 0;
   if (exists === expected) continue;
-  const buf = collectBase64(rel);
-  if (!buf) {
+
+  let chosen = null;
+  for (const cand of collectCandidates(rel)) {
+    if (!cand.b64) continue;
+    const buf = Buffer.from(cand.b64, 'base64');
+    if (buf.length === expected) {
+      chosen = { buf, source: cand.source };
+      break;
+    }
+    console.warn(`${rel}: candidate ${cand.source} decoded ${buf.length} bytes (want ${expected})`);
+  }
+  if (!chosen) {
     console.warn(`skip ${rel}: no usable base64 staging`);
     continue;
   }
-  if (expected && buf.length !== expected) {
-    console.warn(`skip ${rel}: decoded ${buf.length} bytes, expected ${expected}`);
-    continue;
-  }
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  fs.writeFileSync(dest, buf);
-  console.log(`materialized ${rel} (${buf.length} bytes)`);
+  fs.writeFileSync(dest, chosen.buf);
+  console.log(`materialized ${rel} (${chosen.buf.length} bytes via ${chosen.source})`);
 }
