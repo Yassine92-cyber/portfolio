@@ -3,11 +3,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function HomeSkeleton() {
   return (
-    <main className="relative min-h-screen bg-[#030303]">
+    <main className="relative min-h-screen bg-ink">
       <Navigation />
       
       {/* Hero Section Skeleton */}
-      <section className="relative py-24 md:py-32 bg-[#030303]">
+      <section className="relative py-24 md:py-32 bg-ink">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <Skeleton className="h-12 w-64 mx-auto mb-4" />
@@ -18,7 +18,7 @@ export function HomeSkeleton() {
       </section>
 
       {/* About Section Skeleton */}
-      <section className="relative py-24 md:py-32 bg-[#030303]">
+      <section className="relative py-24 md:py-32 bg-ink">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <Skeleton className="h-12 w-48 mx-auto mb-12" />
@@ -37,7 +37,7 @@ export function HomeSkeleton() {
       </section>
 
       {/* Section Skeleton */}
-      <section className="relative py-24 md:py-32 bg-[#030303]">
+      <section className="relative py-24 md:py-32 bg-ink">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Skeleton className="h-12 w-64 mx-auto mb-12" />
@@ -51,7 +51,7 @@ export function HomeSkeleton() {
       </section>
 
       {/* Testimonials Skeleton */}
-      <section className="relative py-24 md:py-32 bg-[#030303]">
+      <section className="relative py-24 md:py-32 bg-ink">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Skeleton className="h-12 w-64 mx-auto mb-12" />

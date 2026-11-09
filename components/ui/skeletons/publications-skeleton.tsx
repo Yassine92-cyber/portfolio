@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export function PublicationsSkeleton() {
   return (
-    <main className="relative min-h-screen bg-[#030303]">
+    <main className="relative min-h-screen bg-ink">
       <Navigation />
       <section className="relative py-12 md:py-16 pt-32">
         <div className="container mx-auto px-4 md:px-6">
