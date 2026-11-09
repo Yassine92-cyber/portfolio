@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, GraduationCap, Cloud, FlaskConical, Leaf, Rocket, Users, Globe, Shield } from "lucide-react";
+import { GraduationCap, Cloud, FlaskConical, Leaf, Rocket, Users, Globe, Shield } from "lucide-react";
 
 const certificationCategories = [
     {
@@ -16,7 +16,7 @@ const certificationCategories = [
             "Certified Trainer in Academic Excellence — International Academies (from 10/03/2013)",
             "Certified Personal Strategic Planning Trainer — IAPTLD, Montreal, Canada (from 10/04/2012)",
             "Volunteer: 'Multiple Chances Schools' Project (from 14/02/2012)",
-            "Everest Center for Training, Counseling & Monitoring (2013–2014) — Responsible for technical services, Certified trainer and consultant, Delivered programs to 92 students → grew to 152 enrollments",
+            "Everest Center for Training, Counseling & Monitoring (2013–2014) — Responsible for technical services, Certified trainer and consultant, Delivered programs to 92 students",
             "Round Table Secretary — Media & Communication Event (17/11/2012) — Topic: Value systems and the role of opinion leaders in the community",
         ],
     },
