@@ -1,21 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, ArrowLeft, FileText } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { BlogPost } from "@/lib/blog-data";
 import { ShareButtons } from "@/components/ui/share-buttons";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { EditorialCover } from "@/components/ui/editorial-cover";
+import { getReadingTime } from "@/lib/utils";
+import { absoluteUrl } from "@/lib/site";
 
 function BlogThumbnail({ src, alt }: { src: string; alt: string }) {
     const [imageError, setImageError] = useState(false);
 
     if (imageError) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-indigo-500/10 to-rose-500/10">
-                <FileText className="w-12 h-12 text-white/20" aria-hidden="true" />
+            <div className="flex h-full w-full items-center justify-center bg-surface">
+                <span className="font-display text-6xl text-paper/20" aria-hidden="true">YK.</span>
             </div>
         );
     }
@@ -25,6 +28,8 @@ function BlogThumbnail({ src, alt }: { src: string; alt: string }) {
             src={src}
             alt={alt}
             fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
             className="object-cover"
             onError={() => setImageError(true)}
             unoptimized
@@ -33,74 +38,86 @@ function BlogThumbnail({ src, alt }: { src: string; alt: string }) {
 }
 
 export function BlogPostContent({ post }: { post: BlogPost }) {
-    const postDate = new Date(post.date);
-    const formattedDate = postDate.toLocaleDateString("en-US", {
+    const formattedDate = new Date(post.date).toLocaleDateString("en-GB", {
         year: "numeric",
         month: "long",
         day: "numeric",
+        timeZone: "UTC",
     });
+    const readingTime = getReadingTime(post.content ?? post.excerpt);
 
     return (
         <>
             <Breadcrumbs
                 items={[
-                    { label: "Blog", href: "/blog" },
+                    { label: "Writing", href: "/blog" },
                     { label: post.title },
                 ]}
             />
 
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-                <div className="flex items-center gap-3 mb-6">
-                    <span className="px-3 py-1 text-xs rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                        {post.category}
-                    </span>
-                    <div className="flex items-center gap-2 text-white/50 text-sm">
-                        <Calendar className="w-4 h-4" aria-hidden="true" />
+                <header className="mx-auto mt-10 max-w-3xl md:mt-14">
+                    <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-paper/65">
+                        <span className="text-violet-300">{post.category}</span>
+                        <span aria-hidden="true">·</span>
                         <time dateTime={post.date}>{formattedDate}</time>
-                    </div>
-                </div>
+                        <span aria-hidden="true">·</span>
+                        <span>{readingTime} min read</span>
+                    </p>
+                    <h1 className="mt-6 text-display-lg text-paper">{post.title}</h1>
+                </header>
 
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-                    {post.title}
-                </h1>
-
-                <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden mb-8 bg-gradient-to-br from-indigo-500/20 to-rose-500/20 border border-white/[0.08]">
-                    <BlogThumbnail src={post.thumbnail} alt={post.title} />
-                </div>
-
-                <div className="prose prose-invert prose-lg max-w-none mb-8">
-                    <p className="text-white/80 text-lg leading-relaxed mb-6">{post.excerpt}</p>
-                    {post.content && (
-                        <p className="text-white/80 text-lg leading-relaxed mb-8">{post.content}</p>
+                <div className="relative mx-auto mt-12 aspect-[16/9] w-full max-w-5xl overflow-hidden rounded-3xl border border-line bg-surface">
+                    {post.thumbnail ? (
+                        <BlogThumbnail src={post.thumbnail} alt="" />
+                    ) : (
+                        <EditorialCover title={post.title} category={post.category} />
                     )}
                 </div>
 
-                <div className="space-y-6 mb-8">
-                    <ShareButtons
-                        title={post.title}
-                        url={`https://yassinekaddouri.com/blog/${post.slug}`}
-                        description={post.excerpt}
-                    />
-                    <div className="p-6 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-                        <p className="text-white/60 text-sm mb-4">Read the full post on LinkedIn:</p>
+                <div className="mx-auto mt-12 max-w-2xl">
+                    <p className="text-lede text-paper/90">{post.excerpt}</p>
+                    {post.content && (
+                        <p className="mt-6 text-lg leading-relaxed text-paper/80">{post.content}</p>
+                    )}
+
+                    <aside className="mt-12 rounded-3xl border border-line bg-surface p-7 md:p-8">
+                        <p className="eyebrow text-paper/65">Full article</p>
+                        <p className="mt-3 text-paper/80">
+                            This piece was first published on LinkedIn, where the full text and discussion live.
+                        </p>
                         <a
                             href={post.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-rose-500 text-white font-medium hover:from-indigo-600 hover:to-rose-600 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white/[0.03] rounded"
-                            aria-label={`Read ${post.title} on LinkedIn`}
+                            className="mt-6 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-paper px-6 py-3 text-[0.9375rem] font-medium text-ink transition-colors hover:bg-violet-100"
                         >
                             Read on LinkedIn
-                            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                            <span className="sr-only">(opens in a new tab)</span>
                         </a>
+                    </aside>
+
+                    <div className="mt-10 flex flex-col gap-8 border-t border-line pt-8">
+                        <ShareButtons
+                            title={post.title}
+                            url={absoluteUrl(`/blog/${post.slug}`)}
+                            description={post.excerpt}
+                        />
+                        <Link
+                            href="/blog"
+                            className="inline-flex items-center gap-2 self-start text-sm text-paper/75 hover:text-paper"
+                        >
+                            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                            All writing
+                        </Link>
                     </div>
                 </div>
             </motion.div>
         </>
     );
 }
-
