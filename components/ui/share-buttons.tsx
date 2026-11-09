@@ -9,19 +9,12 @@ interface ShareButtonsProps {
   description?: string;
 }
 
-export function ShareButtons({ title, url, description }: ShareButtonsProps) {
+export function ShareButtons({ title, url }: ShareButtonsProps) {
   const fullUrl = typeof window !== "undefined" ? window.location.href : url;
-
-  const shareData = {
-    title,
-    url: fullUrl,
-    text: description || title,
-  };
 
   const handleShare = async (platform: "twitter" | "linkedin" | "facebook" | "copy") => {
     const encodedTitle = encodeURIComponent(title);
     const encodedUrl = encodeURIComponent(fullUrl);
-    const encodedText = encodeURIComponent(description || title);
 
     switch (platform) {
       case "twitter":
@@ -63,11 +56,11 @@ export function ShareButtons({ title, url, description }: ShareButtonsProps) {
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-      <span className="text-sm text-white/60 mr-2">Share:</span>
+    <div className="flex flex-wrap items-center gap-3">
+      <span className="eyebrow mr-2 text-paper/60">Share</span>
       <button
         onClick={() => handleShare("twitter")}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white/[0.03]"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-paper/15 px-4 py-2 text-paper/85 transition-colors hover:border-paper/40 hover:text-paper"
         aria-label="Share on Twitter"
       >
         <Twitter className="w-4 h-4" aria-hidden="true" />
@@ -75,7 +68,7 @@ export function ShareButtons({ title, url, description }: ShareButtonsProps) {
       </button>
       <button
         onClick={() => handleShare("linkedin")}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white/[0.03]"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-paper/15 px-4 py-2 text-paper/85 transition-colors hover:border-paper/40 hover:text-paper"
         aria-label="Share on LinkedIn"
       >
         <Linkedin className="w-4 h-4" aria-hidden="true" />
@@ -83,7 +76,7 @@ export function ShareButtons({ title, url, description }: ShareButtonsProps) {
       </button>
       <button
         onClick={() => handleShare("facebook")}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white/[0.03]"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-paper/15 px-4 py-2 text-paper/85 transition-colors hover:border-paper/40 hover:text-paper"
         aria-label="Share on Facebook"
       >
         <Facebook className="w-4 h-4" aria-hidden="true" />
@@ -91,7 +84,7 @@ export function ShareButtons({ title, url, description }: ShareButtonsProps) {
       </button>
       <button
         onClick={() => handleShare("copy")}
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-white/[0.03]"
+        className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-paper/15 px-4 py-2 text-paper/85 transition-colors hover:border-paper/40 hover:text-paper"
         aria-label="Copy link"
       >
         <Link2 className="w-4 h-4" aria-hidden="true" />
