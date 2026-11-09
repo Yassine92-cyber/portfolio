@@ -14,15 +14,15 @@ interface BreadcrumbsProps {
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex items-center gap-2 text-sm text-white/60 flex-wrap">
+    <nav aria-label="Breadcrumb">
+      <ol className="flex flex-wrap items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-paper/60">
         <li>
           <Link
             href="/"
-            className="inline-flex items-center gap-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-[#030303] rounded"
+            className="inline-flex items-center gap-1 rounded transition-colors hover:text-paper"
             aria-label="Home"
           >
-            <Home className="w-4 h-4" aria-hidden="true" />
+            <Home className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="sr-only">Home</span>
           </Link>
         </li>
@@ -30,15 +30,15 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
           const isLast = index === items.length - 1;
           return (
             <li key={index} className="flex items-center gap-2">
-              <ChevronRight className="w-4 h-4 text-white/40" aria-hidden="true" />
+              <ChevronRight className="h-3.5 w-3.5 text-paper/40" aria-hidden="true" />
               {isLast ? (
-                <span className="text-white" aria-current="page">
+                <span className="block max-w-[28ch] truncate text-paper/85 sm:max-w-[48ch]" aria-current="page">
                   {item.label}
                 </span>
               ) : (
                 <Link
                   href={item.href || "#"}
-                  className="hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-[#030303] rounded"
+                  className="rounded transition-colors hover:text-paper"
                 >
                   {item.label}
                 </Link>
