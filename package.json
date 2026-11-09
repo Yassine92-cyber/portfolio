@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "node scripts/materialize-assets.mjs",
-    "predev": "node scripts/materialize-assets.mjs"
+    "prebuild": "node scripts/materialize-assets.cjs",
+    "predev": "node scripts/materialize-assets.cjs"
   },
   "repository": {
     "type": "git",
