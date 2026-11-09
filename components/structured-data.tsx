@@ -44,3 +44,4 @@ export function WebsiteSchema() {
 
   return <StructuredData data={schema} />;
 }
+
