@@ -37,7 +37,7 @@ export function ScrollToTop() {
                     exit={{ opacity: 0, scale: 0.8, y: 20 }}
                     transition={{ duration: 0.2 }}
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-rose-500 text-white shadow-lg hover:from-indigo-600 hover:to-rose-600 hover:shadow-xl transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-[#030303]"
+                    className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-paper/15 bg-surface/90 text-paper backdrop-blur transition-colors duration-300 hover:border-paper/40 hover:bg-surface"
                     aria-label="Scroll to top"
                 >
                     <ArrowUp className="w-5 h-5" aria-hidden="true" />
