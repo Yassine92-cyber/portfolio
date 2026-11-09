@@ -1,0 +1,1 @@
+open('/tmp/ogq03.txt').read()
