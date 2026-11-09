@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Palette, Zap, Users } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Code, Zap, Users } from "lucide-react";
 
 const services = [
     {
